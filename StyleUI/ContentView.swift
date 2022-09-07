@@ -37,11 +37,22 @@ struct ContentView: View {
 				}
 				
 				Container(heading: "Slide Card View") {
-					SlideCardView(data: [Color.red, Color.blue, Color.mint,Color.red, Color.blue], itemSize: .init(width: 200, height: 200), spacing: 0, leading: false) { color in
+					SlideCardView(data: [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue], itemSize: .init(width: 200, height: 200), spacing: 0, leading: false) { color,isSelected in
 						RoundedRectangle(cornerRadius: 20)
 							.fill((color as? Color) ?? .red)
 							.frame(width: 200, height: 200)
-							.preference(key: SizePreferenceKey.self, value: .init(width: 200, height: 200))
+							.overlay {
+								VStack(alignment: .leading) {
+									Spacer()
+									if isSelected {
+										"isSelected".text
+											.transition(.move(edge: .bottom))
+											.padding(.bottom,10)
+									}
+								}
+								.frame(width: 200, height: 200)
+								.scaleEffect(0.85)
+							}
 					}
 				}
 				

@@ -19,7 +19,7 @@ struct SlideZoomCard: ViewModifier {
 	}
 	
 	func scaleFactor(midX: CGFloat){
-		scale = midX > .totalWidth * 0.75 ? 0.9 : 1
+		scale = midX > .totalWidth * 0.5 ? 0.9 : 1
 	}
 	
 	func body(content: Content) -> some View {
@@ -69,19 +69,15 @@ struct SlideZoomScroll<Content: View>: View {
 	
 	var body: some View {
 		ScrollView(.horizontal, showsIndicators: false) {
-			if self.size != .zero {
-				LazyHStack(alignment: .center, spacing: spacing) {
-					ForEach(Array(data.enumerated()), id: \.offset) { data in
-						cardBuilder(data.element)
-							.slideZoomCard(size: size)
-							.fixedSize()
-					}
-					Spacer().frame(size: .init(width: .totalWidth.half.half, height: size.height))
+			HStack(alignment: .center, spacing: spacing) {
+				ForEach(Array(data.enumerated()), id: \.offset) { data in
+					cardBuilder(data.element)
+						.slideZoomCard(size: size)
+						.fixedSize()
 				}
-				.frame(height: size.height, alignment: .leading)
-			} else {
-				"Loading".text
+				Spacer().frame(size: .init(width: .totalWidth.half.half, height: size.height))
 			}
+			.frame(height: size.height, alignment: .leading)
 		}
 	}
 }
