@@ -8,12 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct AnimationMaster: View {
+struct AnimationCollectionMaster: View {
 	let colors : [Color] = [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue]
 	
 	func headerBuilder(title: String, subTitle: String? = nil) -> AnyView {
 		HStack(alignment: .center, spacing: 10) {
-			"Slide Over Carousel".text
+			title.text
+				.padding(10)
+				.borderCard(borderColor: .red, radius: 8, borderWidth: 1)
 			Spacer()
 			if let validSubTitle = subTitle {
 				validSubTitle.text

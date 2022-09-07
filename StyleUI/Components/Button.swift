@@ -83,3 +83,29 @@ struct CustomButtonStyle: ButtonStyle {
 			.scaleEffect(configuration.isPressed ? 0.9 : 1)
 	}	
 }
+
+
+//MARK: - ButtonViewModifier
+
+struct ButtonViewModifier: ViewModifier {
+	
+	let handler: () -> Void
+	
+	init(handler: @escaping () -> Void) {
+		self.handler = handler
+	}
+	
+	
+	func body(content: Content) -> some View {
+		Button(action: handler) {
+			content
+		}.buttonStyle(CustomButtonStyle())
+	}
+}
+
+extension View {
+	
+	func buttonify(action: @escaping () -> Void) -> some View {
+		modifier(ButtonViewModifier(handler: action))
+	}
+}

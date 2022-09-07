@@ -11,7 +11,7 @@ struct ContentView: View {
 	@State var showAnimation: Bool = false
 	@State var imageView: Bool = false
 	var animationView: some View {
-		AnimationMaster()
+		AnimationCollectionMaster()
 	}
 	
 	init() {
@@ -20,7 +20,7 @@ struct ContentView: View {
 	
 	var navBarAppearance: UINavigationBarAppearance {
 		let navAppearance = UINavigationBarAppearance()
-		navAppearance.backgroundColor = .systemIndigo
+		navAppearance.backgroundColor = .purple
 		navAppearance.shadowColor = .clear
 		navAppearance.titleTextAttributes = [.foregroundColor : UIColor.white]
 		navAppearance.largeTitleTextAttributes = [.foregroundColor : UIColor.white]
@@ -29,15 +29,15 @@ struct ContentView: View {
 	
     var body: some View {
 			ScrollView(.vertical, showsIndicators: false) {
-				VStack(alignment: .leading, spacing: 10) {
-					"Animation".text
-						.onTapGesture {
+				VStack(alignment: .leading, spacing: 20) {
+					"Animated Collections".text
+						.buttonify {
 							asyncMainAnimation {
 								self.showAnimation.toggle()
 							}
 						}
 					"Image".text
-						.onTapGesture {
+						.buttonify {
 							asyncMainAnimation {
 								self.imageView.toggle()
 							}
@@ -47,7 +47,7 @@ struct ContentView: View {
 				.frame(maxWidth: .infinity, alignment: .leading)
 				
 				NavLink(isActive: $showAnimation) {
-					AnimationMaster()
+					AnimationCollectionMaster()
 						.navigationBarTitleDisplayMode(.inline)
 				}
 				imageNavLink
