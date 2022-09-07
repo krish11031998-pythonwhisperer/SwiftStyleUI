@@ -29,9 +29,18 @@ struct AnimationCollectionMaster: View {
 			LazyVStack(alignment: .center, spacing: 10) {
 				
 				SlideOverCarousel(data:[Color.red, Color.blue, Color.brown, Color.mint]) { color in
-					RoundedRectangle(cornerRadius: 20)
-						.fill((color as? Color) ?? .black)
-						.frame(width: .totalWidth - 20, height: 200, alignment: .center)
+					VStack(alignment: .leading, spacing: 15) {
+						RoundedButton(model: RoundedButtonComponents.testModelLeading)
+							.fixedHeight(height: 50)
+						"This is a test text , a alternative to the boring Lorem ipsum text"
+							.styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black)
+							.text
+						Spacer()
+					}
+					.padding()
+					.frame(size: .init(width: .totalWidth - 20, height: 200))
+					.background((color as? Color) ?? .black)
+					.clipContent(radius: 16)
 				}
 				.containerize(header: headerBuilder(title: "Slide Over Carousel"))
 

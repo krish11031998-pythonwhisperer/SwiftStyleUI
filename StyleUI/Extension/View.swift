@@ -22,6 +22,14 @@ extension View {
 		self.frame(width: size.width, height: size.height, alignment: alignment)
 	}
 	
+	func fixedHeight(height: CGFloat, alignment: Alignment = .center) -> some View {
+		self.frame(height: height, alignment: alignment)
+	}
+	
+	func fixedWidth(width: CGFloat, alignment: Alignment = .center) -> some View {
+		self.frame(width: width, alignment: alignment)
+	}
+	
 	var anyView: AnyView { .init(self) }
 }
 

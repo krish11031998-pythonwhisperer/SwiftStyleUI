@@ -89,6 +89,14 @@ struct ImageView: View {
     }
 }
 
+extension ImageView {
+	
+	func framed(size: CGSize, cornerRadius: CGFloat = 8, alignment: Alignment = .center) -> some View {
+		self.frame(size: size, alignment: alignment)
+			.clipContent(radius: cornerRadius)
+	}
+}
+
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         ImageView(url: "")
