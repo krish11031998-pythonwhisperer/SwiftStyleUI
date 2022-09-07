@@ -19,3 +19,12 @@ struct SizePreferenceKey: PreferenceKey {
 		value = nextValue()
 	}
 }
+
+
+//MARK: - CGSize Extension
+
+extension CGSize {
+	init(squared: CGFloat) {
+		self.init(width: squared, height: squared)
+	}
+}

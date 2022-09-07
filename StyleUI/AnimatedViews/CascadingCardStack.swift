@@ -105,6 +105,7 @@ struct CascadingCardStack<Content: View>: View {
 		}
 		.offset(x: off)
 		.gesture(DragGesture().onChanged(change(_:)).onEnded(end(_:)))
+		.frame(width: .totalWidth)
 	}
 }
 

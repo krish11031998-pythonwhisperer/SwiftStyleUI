@@ -8,65 +8,98 @@
 import SwiftUI
 
 struct ContentView: View {
-	let colors : [Color] = [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue]
+	@State var showAnimation: Bool = false
+	@State var imageView: Bool = false
+	var animationView: some View {
+		AnimationMaster()
+	}
+	
+	init() {
+		
+	}
+	
+	var navBarAppearance: UINavigationBarAppearance {
+		let navAppearance = UINavigationBarAppearance()
+		navAppearance.backgroundColor = .systemIndigo
+		navAppearance.shadowColor = .clear
+		navAppearance.titleTextAttributes = [.foregroundColor : UIColor.white]
+		navAppearance.largeTitleTextAttributes = [.foregroundColor : UIColor.white]
+		return navAppearance
+	}
+	
     var body: some View {
-		ScrollView(.vertical, showsIndicators: false) {
-			LazyVStack(alignment: .leading, spacing: 10) {
-				Container(heading: "Slide Over Carousel") {
-					SlideOverCarousel(data:[Color.red, Color.blue, Color.brown, Color.mint]) { color in
-						RoundedRectangle(cornerRadius: 20)
-							.fill((color as? Color) ?? .black)
-							.frame(width: .totalWidth - 20, height: 200, alignment: .center)
-					}
-				}
-				
-				Container(heading: "Cascading Card Stack") {
-					CascadingCardStack(data: colors, offFactor: .totalWidth.half.half) { color in
-						RoundedRectangle(cornerRadius: 20)
-							.fill((color as? Color) ?? .red)
-							.frame(width: 200, height: 350)
-					}
-				}
-				
-				Container(heading: "Slide Zoom Scroll") {
-					SlideZoomScroll(data: [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue], itemSize: .init(width: 200, height: 200)) { color in
-						RoundedRectangle(cornerRadius: 20)
-							.fill((color as? Color) ?? .red)
-							.frame(width: 200, height: 200)
-					}
-				}
-				
-				Container(heading: "Slide Card View") {
-					SlideCardView(data: [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue], itemSize: .init(width: 200, height: 200), spacing: 0, leading: false) { color,isSelected in
-						RoundedRectangle(cornerRadius: 20)
-							.fill((color as? Color) ?? .red)
-							.frame(width: 200, height: 200)
-							.overlay {
-								VStack(alignment: .leading) {
-									Spacer()
-									if isSelected {
-										"isSelected".text
-											.transition(.move(edge: .bottom))
-											.padding(.bottom,10)
-									}
-								}
-								.frame(width: 200, height: 200)
-								.scaleEffect(0.85)
+			ScrollView(.vertical, showsIndicators: false) {
+				VStack(alignment: .leading, spacing: 10) {
+					"Animation".text
+						.onTapGesture {
+							asyncMainAnimation {
+								self.showAnimation.toggle()
 							}
-					}
-				}
+						}
+					"Image".text
+						.onTapGesture {
+							asyncMainAnimation {
+								self.imageView.toggle()
+							}
+						}
+						
+				}.padding()
+				.frame(maxWidth: .infinity, alignment: .leading)
 				
-				Container(heading: "Slide Zoom Scroll") {
-					SlideZoomScroll(data: [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue], itemSize: .init(width: 200, height: 200)) { color in
-						RoundedRectangle(cornerRadius: 20)
-							.fill((color as? Color) ?? .red)
-							.frame(width: 200, height: 200)
-					}
+				NavLink(isActive: $showAnimation) {
+					AnimationMaster()
+						.navigationBarTitleDisplayMode(.inline)
 				}
-
-			}.padding(.horizontal, 10)
-		}
+				imageNavLink
+			}
+			.navigationBarHidden(true)
+			.customNavbarAppearance(navbarAppearance: navBarAppearance)
     }
+}
+
+extension ContentView {
+	var imageNavLink: some View {
+		NavLink(isActive: $imageView) {
+			ScrollView(.vertical, showsIndicators: false) {
+				VStack(alignment: .center, spacing: 10) {
+					Section {
+						ImageView(url: "https://weathereport.mypinata.cloud/ipfs/QmZJ56QmQpXQJamofJJYbR5T1gQTxVMhN5uHYfhvAmdFr8/85.png")
+							.frame(size: .init(width: 100, height: 100))
+							.clipContent(radius: 16)
+							
+					} header: {
+						HStack(alignment: .center, spacing: 10) {
+							"Rectangle Image".text
+							Spacer()
+							"Caption".text
+						}.padding()
+					} footer: {
+						Spacer()
+							.frame(size: .init(width: .zero, height: 15))
+					}
+
+					Section {
+						ImageView(url: "https://weathereport.mypinata.cloud/ipfs/QmZJ56QmQpXQJamofJJYbR5T1gQTxVMhN5uHYfhvAmdFr8/85.png")
+							.frame(size: .init(width: 100, height: 100))
+							.clipContent(radius: 50)
+					} header: {
+						HStack(alignment: .center, spacing: 10) {
+							"Circle Image".text
+							Spacer()
+							"Caption".text
+						}
+						.padding()
+					} footer: {
+						Spacer()
+							.frame(size: .init(width: .zero, height: 15))
+					}
+
+				}
+			}
+			.navigationTitle("ImageView")
+			.navigationBarTitleDisplayMode(.inline)
+		}
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {

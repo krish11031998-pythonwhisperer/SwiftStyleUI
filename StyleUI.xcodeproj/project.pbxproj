@@ -24,6 +24,10 @@
 		EF8D057028C73C66000076E5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056F28C73C66000076E5 /* Array.swift */; };
 		EF8D057228C77641000076E5 /* SlideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057128C77641000076E5 /* SlideCardView.swift */; };
 		EF8D057528C77854000076E5 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057428C77854000076E5 /* CGSize.swift */; };
+		EF8D057728C866DD000076E5 /* AnimationMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057628C866DD000076E5 /* AnimationMaster.swift */; };
+		EF8D057928C86917000076E5 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057828C86917000076E5 /* Navigation.swift */; };
+		EF8D057B28C8730E000076E5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057A28C8730E000076E5 /* Button.swift */; };
+		EF8D058028C880F1000076E5 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057F28C880F1000076E5 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,10 @@
 		EF8D056F28C73C66000076E5 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		EF8D057128C77641000076E5 /* SlideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideCardView.swift; sourceTree = "<group>"; };
 		EF8D057428C77854000076E5 /* CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
+		EF8D057628C866DD000076E5 /* AnimationMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationMaster.swift; sourceTree = "<group>"; };
+		EF8D057828C86917000076E5 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		EF8D057A28C8730E000076E5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		EF8D057F28C880F1000076E5 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +122,7 @@
 		EF8D053428C670AA000076E5 /* StyleUI */ = {
 			isa = PBXGroup;
 			children = (
-				EF8D057328C7783E000076E5 /* CommonMisc */,
+				EF8D057E28C880DE000076E5 /* Components */,
 				EF8D056228C6727D000076E5 /* Extension */,
 				EF8D055F28C670BD000076E5 /* AnimatedViews */,
 				EF8D053528C670AA000076E5 /* StyleUIApp.swift */,
@@ -158,6 +166,7 @@
 				EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */,
 				EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */,
 				EF8D057128C77641000076E5 /* SlideCardView.swift */,
+				EF8D057628C866DD000076E5 /* AnimationMaster.swift */,
 			);
 			path = AnimatedViews;
 			sourceTree = "<group>";
@@ -174,11 +183,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		EF8D057328C7783E000076E5 /* CommonMisc */ = {
+		EF8D057E28C880DE000076E5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EF8D057F28C880F1000076E5 /* ImageView.swift */,
+				EF8D057828C86917000076E5 /* Navigation.swift */,
+				EF8D057A28C8730E000076E5 /* Button.swift */,
 			);
-			path = CommonMisc;
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +331,10 @@
 				EF8D057528C77854000076E5 /* CGSize.swift in Sources */,
 				EF8D056828C6FDA9000076E5 /* CommonComponents.swift in Sources */,
 				EF8D056628C6743B000076E5 /* View.swift in Sources */,
+				EF8D058028C880F1000076E5 /* ImageView.swift in Sources */,
+				EF8D057728C866DD000076E5 /* AnimationMaster.swift in Sources */,
+				EF8D057928C86917000076E5 /* Navigation.swift in Sources */,
+				EF8D057B28C8730E000076E5 /* Button.swift in Sources */,
 				EF8D056A28C6FF0B000076E5 /* String.swift in Sources */,
 				EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */,
 				EF8D056128C670CF000076E5 /* SlideOverCarousel.swift in Sources */,

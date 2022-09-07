@@ -8,29 +8,36 @@
 import Foundation
 import SwiftUI
 
-struct Container<Content: View>: View {
-	var header: String
-	var actionText: String?
-	var action: (() -> Void)?
-	var innerView: Content
-	
-	init(heading: String, actionText: String? = nil, @ViewBuilder view: @escaping () -> Content, action: (() -> Void)? = nil) {
-		self.header = heading
-		self.actionText = actionText
-		self.action = action
-		self.innerView = view()
-	}
+struct EmptyView: View {
 	
 	var body: some View {
-		VStack(alignment: .center, spacing: 10) {
-			HStack(alignment: .center, spacing: 10) {
-				header.styled(font: .systemFont(ofSize: 15, weight: .semibold), color: .black).text
-				Spacer()
-				if let validActionText = actionText {
-					validActionText.styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black).text
-				}
-			}
-			innerView
-		}
+		Color.clear
+			.frame(size: .zero)
 	}
 }
+
+struct ContainerViewModifier:ViewModifier {
+	
+	var header: AnyView
+	var footer: AnyView
+	
+	init(header: AnyView, footer: AnyView) {
+		self.header = header
+		self.footer = footer
+	}
+	
+	
+	func body(content: Content) -> some View {
+		Section {
+			content
+		} header: { header } footer: { footer }
+	}
+}
+
+extension View {
+	
+	func containerize(header: AnyView = EmptyView().anyView, footer: AnyView = EmptyView().anyView) -> some View {
+		modifier(ContainerViewModifier(header: header, footer: footer))
+	}
+}
+

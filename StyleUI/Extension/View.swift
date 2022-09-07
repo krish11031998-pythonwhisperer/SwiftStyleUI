@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-//MARK: - Animation
+//MARK: - View
 
 extension View {
 	
@@ -20,5 +20,65 @@ extension View {
 	
 	func frame(size: CGSize, alignment: Alignment = .center) -> some View {
 		self.frame(width: size.width, height: size.height, alignment: alignment)
+	}
+	
+	var anyView: AnyView { .init(self) }
+}
+
+//MARK: - Clipping Content
+
+struct ClipContent: ViewModifier {
+	var radius: CGFloat
+	func body(content: Content) -> some View {
+		content
+			.contentShape(RoundedRectangle(cornerRadius: radius))
+			.clipShape(RoundedRectangle(cornerRadius: radius))
+	}
+}
+
+extension View {
+	
+	func clipContent(radius: CGFloat) -> some View {
+		modifier(ClipContent(radius: radius))
+	}
+}
+
+
+//MARK: - Navigation Stack
+
+struct CustomNavigatonStyle: ViewModifier {
+
+	init(navbarAppearance: UINavigationBarAppearance) {
+		UINavigationBar.appearance().standardAppearance = navbarAppearance
+		UINavigationBar.appearance().scrollEdgeAppearance = navbarAppearance
+		UINavigationBar.appearance().compactAppearance = navbarAppearance
+	}
+	
+	init(standardAppearance: UINavigationBarAppearance,
+		 scrollEdgeAppearance: UINavigationBarAppearance,
+		 compactAppearance: UINavigationBarAppearance) {
+		UINavigationBar.appearance().standardAppearance = standardAppearance
+		UINavigationBar.appearance().scrollEdgeAppearance = scrollEdgeAppearance
+		UINavigationBar.appearance().compactAppearance = compactAppearance
+	}
+	
+	func body(content: Content) -> some View {
+		NavigationView {
+			content
+		}.navigationViewStyle(StackNavigationViewStyle())
+	}
+	
+}
+
+extension View {
+	
+	func customNavbarAppearance(navbarAppearance: UINavigationBarAppearance) -> some View {
+		modifier(CustomNavigatonStyle(navbarAppearance: navbarAppearance))
+	}
+	
+	func customNavbarAppearance(standardAppearance: UINavigationBarAppearance,
+								scrollEdgeAppearance: UINavigationBarAppearance,
+								compactAppearance: UINavigationBarAppearance) -> some View {
+		modifier(CustomNavigatonStyle(standardAppearance: standardAppearance, scrollEdgeAppearance: scrollEdgeAppearance, compactAppearance: compactAppearance))
 	}
 }
