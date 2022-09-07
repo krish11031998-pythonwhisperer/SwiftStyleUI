@@ -75,14 +75,16 @@ struct CascadingCardStack<Content: View>: View {
 	
 	func change(_ value: DragGesture.Value) {
 		let xOff = value.translation.width
-		asyncMainAnimation {
-			self.off = xOff
+		asyncMainAnimation(animation: .easeInOut) {
+			if abs(xOff) <= 20 {
+				self.off = xOff
+			}
 		}
 	}
 	
 	func end(_ value: DragGesture.Value) {
 		let xOff = value.translation.width
-		asyncMainAnimation {
+		asyncMainAnimation(animation: .easeInOut) {
 			let delta = (xOff > 0 ? -1 : 1)
 			if abs(xOff) >= 25, self.currentIdx + delta >= 0 && self.currentIdx + delta <= self.data.count - 1 {
 				print("(DEBUG) currentIdx : \(self.currentIdx + delta), xOff: \(xOff) and delta : \(delta)")

@@ -20,8 +20,10 @@
 		EF8D056828C6FDA9000076E5 /* CommonComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056728C6FDA9000076E5 /* CommonComponents.swift */; };
 		EF8D056A28C6FF0B000076E5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056928C6FF0B000076E5 /* String.swift */; };
 		EF8D056C28C7043D000076E5 /* CascadingCardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */; };
-		EF8D056E28C73AF1000076E5 /* SlideZoomCardCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056D28C73AF1000076E5 /* SlideZoomCardCarousel.swift */; };
+		EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */; };
 		EF8D057028C73C66000076E5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056F28C73C66000076E5 /* Array.swift */; };
+		EF8D057228C77641000076E5 /* SlideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057128C77641000076E5 /* SlideCardView.swift */; };
+		EF8D057528C77854000076E5 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057428C77854000076E5 /* CGSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +60,10 @@
 		EF8D056728C6FDA9000076E5 /* CommonComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonComponents.swift; sourceTree = "<group>"; };
 		EF8D056928C6FF0B000076E5 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CascadingCardStack.swift; sourceTree = "<group>"; };
-		EF8D056D28C73AF1000076E5 /* SlideZoomCardCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideZoomCardCarousel.swift; sourceTree = "<group>"; };
+		EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideZoomScroll.swift; sourceTree = "<group>"; };
 		EF8D056F28C73C66000076E5 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		EF8D057128C77641000076E5 /* SlideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideCardView.swift; sourceTree = "<group>"; };
+		EF8D057428C77854000076E5 /* CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 		EF8D053428C670AA000076E5 /* StyleUI */ = {
 			isa = PBXGroup;
 			children = (
+				EF8D057328C7783E000076E5 /* CommonMisc */,
 				EF8D056228C6727D000076E5 /* Extension */,
 				EF8D055F28C670BD000076E5 /* AnimatedViews */,
 				EF8D053528C670AA000076E5 /* StyleUIApp.swift */,
@@ -151,7 +156,8 @@
 			children = (
 				EF8D056028C670CF000076E5 /* SlideOverCarousel.swift */,
 				EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */,
-				EF8D056D28C73AF1000076E5 /* SlideZoomCardCarousel.swift */,
+				EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */,
+				EF8D057128C77641000076E5 /* SlideCardView.swift */,
 			);
 			path = AnimatedViews;
 			sourceTree = "<group>";
@@ -163,8 +169,16 @@
 				EF8D056528C6743B000076E5 /* View.swift */,
 				EF8D056928C6FF0B000076E5 /* String.swift */,
 				EF8D056F28C73C66000076E5 /* Array.swift */,
+				EF8D057428C77854000076E5 /* CGSize.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		EF8D057328C7783E000076E5 /* CommonMisc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CommonMisc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,10 +315,12 @@
 				EF8D057028C73C66000076E5 /* Array.swift in Sources */,
 				EF8D056428C6728B000076E5 /* CGFloat.swift in Sources */,
 				EF8D053828C670AA000076E5 /* ContentView.swift in Sources */,
+				EF8D057228C77641000076E5 /* SlideCardView.swift in Sources */,
+				EF8D057528C77854000076E5 /* CGSize.swift in Sources */,
 				EF8D056828C6FDA9000076E5 /* CommonComponents.swift in Sources */,
 				EF8D056628C6743B000076E5 /* View.swift in Sources */,
 				EF8D056A28C6FF0B000076E5 /* String.swift in Sources */,
-				EF8D056E28C73AF1000076E5 /* SlideZoomCardCarousel.swift in Sources */,
+				EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */,
 				EF8D056128C670CF000076E5 /* SlideOverCarousel.swift in Sources */,
 				EF8D053628C670AA000076E5 /* StyleUIApp.swift in Sources */,
 			);
