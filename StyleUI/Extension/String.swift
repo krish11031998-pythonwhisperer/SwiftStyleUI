@@ -12,11 +12,9 @@ protocol RenderableText {
 	var text: Text { get }
 }
 
-extension NSAttributedString: RenderableText {
+extension AttributedString: RenderableText {
 	
-	var text: Text {
-		.init(.init(self))
-	}
+	var text: Text { .init(self) }
 }
 
 extension String: RenderableText {
@@ -25,10 +23,11 @@ extension String: RenderableText {
 		.init(self)
 	}
 	
-	func styled(font: UIFont,color: Color) -> RenderableText {
-		var attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font : font]
-		attributes[NSAttributedString.Key.foregroundColor] = color
+	func styled(font: UIFont, color: Color) -> RenderableText {
+		var attributedString = AttributedString(self)
+		attributedString.font = font
+		attributedString.foregroundColor = color
 		
-		return NSAttributedString(string: self, attributes: attributes)
+		return attributedString
 	}
 }

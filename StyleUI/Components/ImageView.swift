@@ -16,6 +16,8 @@ enum ImageLoadError: String, Error {
 extension UIImage {
 	
 	static var cache: NSCache<NSString,UIImage> = { .init() }()
+	
+	static var testImage: String { "https://weathereport.mypinata.cloud/ipfs/QmZJ56QmQpXQJamofJJYbR5T1gQTxVMhN5uHYfhvAmdFr8/85.png" }
 }
 
 class ImageDownloader: ObservableObject {
@@ -56,31 +58,40 @@ class ImageDownloader: ObservableObject {
 
 struct ImageView: View {
 	
-	let url: String
+	let url: String?
+	let img: UIImage?
 	@StateObject var IMD: ImageDownloader = .init()
 	
-	init(url: String = "") {
+	init(url: String? = nil, img: UIImage? = nil) {
 		self.url = url
+		self.img = img
+	}
+	
+	private var image: UIImage? {
+		IMD.image ?? img
+	}
+	
+	private func onAppear() {
+		guard let validURL = url else { return }
+		IMD.loadImage(url: validURL)
 	}
 
     var body: some View {
 		ZStack(alignment: .center) {
 			Color.gray.opacity(0.25)
-			if let validImage = IMD.image {
+			if let validImage = image {
 				Image(uiImage: validImage)
 					.resizable()
 					.scaledToFill()
 			}
 		}
-		.onAppear {
-			IMD.loadImage(url: url)
-		}
+		.onAppear(perform: onAppear)
     }
 }
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView(url: "https://weathereport.mypinata.cloud/ipfs/QmZJ56QmQpXQJamofJJYbR5T1gQTxVMhN5uHYfhvAmdFr8/85.png")
+        ImageView(url: "")
 			.frame(size: .init(width: 200, height: 200))
 			.clipShape(RoundedRectangle(cornerRadius: 20))
     }

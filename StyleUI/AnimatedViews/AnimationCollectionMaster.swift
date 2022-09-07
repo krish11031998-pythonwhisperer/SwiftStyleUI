@@ -75,5 +75,7 @@ struct AnimationCollectionMaster: View {
 			
 			}
 		}
+		.navigationTitle("Animatable Collections")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 }

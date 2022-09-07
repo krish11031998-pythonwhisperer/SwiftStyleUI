@@ -27,4 +27,6 @@ extension CGSize {
 	init(squared: CGFloat) {
 		self.init(width: squared, height: squared)
 	}
+	
+	static var regularSize: Self { .init(squared: 50) }
 }

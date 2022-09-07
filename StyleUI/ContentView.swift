@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
 	@State var showAnimation: Bool = false
 	@State var imageView: Bool = false
+	@State var roundedButton: Bool = false
+	
 	var animationView: some View {
 		AnimationCollectionMaster()
 	}
@@ -30,27 +32,27 @@ struct ContentView: View {
     var body: some View {
 			ScrollView(.vertical, showsIndicators: false) {
 				VStack(alignment: .leading, spacing: 20) {
-					"Animated Collections".text
-						.buttonify {
-							asyncMainAnimation {
-								self.showAnimation.toggle()
-							}
+					HeaderSubHeadView(title: "Animated Collections", subTitle: "Here you can see all the animatable fancy collections")
+					.buttonify {
+							self.showAnimation.toggle()
 						}
-					"Image".text
+					HeaderSubHeadView(title: "Image", subTitle: "Every thing you can do with an image")
 						.buttonify {
-							asyncMainAnimation {
-								self.imageView.toggle()
-							}
+							self.imageView.toggle()
+						}
+					HeaderSubHeadView(title: "Rounded Button", subTitle: "Custom Rounded Button with custom Config")
+						.buttonify {
+							self.roundedButton.toggle()
 						}
 						
 				}.padding()
 				.frame(maxWidth: .infinity, alignment: .leading)
 				
-				NavLink(isActive: $showAnimation) {
-					AnimationCollectionMaster()
-						.navigationBarTitleDisplayMode(.inline)
-				}
+				
+				animatedCollectionsLink
 				imageNavLink
+				roundedButtonLink
+				
 			}
 			.navigationBarHidden(true)
 			.customNavbarAppearance(navbarAppearance: navBarAppearance)
@@ -58,46 +60,22 @@ struct ContentView: View {
 }
 
 extension ContentView {
+	
+	var animatedCollectionsLink: some View {
+		NavLink(isActive: $showAnimation) {
+			AnimationCollectionMaster()
+		}
+	}
+	
 	var imageNavLink: some View {
 		NavLink(isActive: $imageView) {
-			ScrollView(.vertical, showsIndicators: false) {
-				VStack(alignment: .center, spacing: 10) {
-					Section {
-						ImageView(url: "https://weathereport.mypinata.cloud/ipfs/QmZJ56QmQpXQJamofJJYbR5T1gQTxVMhN5uHYfhvAmdFr8/85.png")
-							.frame(size: .init(width: 100, height: 100))
-							.clipContent(radius: 16)
-							
-					} header: {
-						HStack(alignment: .center, spacing: 10) {
-							"Rectangle Image".text
-							Spacer()
-							"Caption".text
-						}.padding()
-					} footer: {
-						Spacer()
-							.frame(size: .init(width: .zero, height: 15))
-					}
-
-					Section {
-						ImageView(url: "https://weathereport.mypinata.cloud/ipfs/QmZJ56QmQpXQJamofJJYbR5T1gQTxVMhN5uHYfhvAmdFr8/85.png")
-							.frame(size: .init(width: 100, height: 100))
-							.clipContent(radius: 50)
-					} header: {
-						HStack(alignment: .center, spacing: 10) {
-							"Circle Image".text
-							Spacer()
-							"Caption".text
-						}
-						.padding()
-					} footer: {
-						Spacer()
-							.frame(size: .init(width: .zero, height: 15))
-					}
-
-				}
-			}
-			.navigationTitle("ImageView")
-			.navigationBarTitleDisplayMode(.inline)
+			ImageComponents()
+		}
+	}
+	
+	var roundedButtonLink: some View {
+		NavLink(isActive: $roundedButton) {
+			RoundedButtonComponents()
 		}
 	}
 }

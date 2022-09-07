@@ -82,3 +82,40 @@ extension View {
 		modifier(CustomNavigatonStyle(standardAppearance: standardAppearance, scrollEdgeAppearance: scrollEdgeAppearance, compactAppearance: compactAppearance))
 	}
 }
+
+//MARK: - View Custom Extension
+
+struct Blobify: ViewModifier {
+	let background: Color
+	let padding: CGFloat
+	let cornerRadius: CGFloat
+	
+	init(background: Color = .clear, padding: CGFloat = 10, cornerRadius: CGFloat = 8) {
+		self.background = background
+		self.padding = padding
+		self.cornerRadius = cornerRadius
+	}
+	
+	func body(content: Content) -> some View {
+		content
+			.padding(padding)
+			.background(background)
+			.clipContent(radius: cornerRadius)
+	}
+	
+}
+
+extension View {
+	
+	func blobify(background: Color = .clear, padding: CGFloat = 10, cornerRadius: CGFloat)  -> some View {
+		modifier(Blobify(background: background, padding: padding, cornerRadius: cornerRadius))
+	}
+	
+	@ViewBuilder func isHidden(_ condition: Bool) -> some View {
+		if condition {
+			self
+		} else {
+			Color.clear.frame(size: .zero)
+		}
+	}
+}

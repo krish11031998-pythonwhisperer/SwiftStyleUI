@@ -29,6 +29,10 @@
 		EF8D057B28C8730E000076E5 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057A28C8730E000076E5 /* Button.swift */; };
 		EF8D058028C880F1000076E5 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057F28C880F1000076E5 /* ImageView.swift */; };
 		EFC9B76E28C8B25E000A6452 /* ViewStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B76D28C8B25E000A6452 /* ViewStyling.swift */; };
+		EFC9B77028C8B5FC000A6452 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B76F28C8B5FC000A6452 /* Text.swift */; };
+		EFC9B77228C8CBF1000A6452 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77128C8CBF1000A6452 /* RoundedButton.swift */; };
+		EFC9B77528C8DB77000A6452 /* ImagesComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77428C8DB77000A6452 /* ImagesComponents.swift */; };
+		EFC9B77728C8DCED000A6452 /* RoundedButtonComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77628C8DCED000A6452 /* RoundedButtonComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +78,10 @@
 		EF8D057A28C8730E000076E5 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		EF8D057F28C880F1000076E5 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		EFC9B76D28C8B25E000A6452 /* ViewStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyling.swift; sourceTree = "<group>"; };
+		EFC9B76F28C8B5FC000A6452 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		EFC9B77128C8CBF1000A6452 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		EFC9B77428C8DB77000A6452 /* ImagesComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesComponents.swift; sourceTree = "<group>"; };
+		EFC9B77628C8DCED000A6452 /* RoundedButtonComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +132,7 @@
 		EF8D053428C670AA000076E5 /* StyleUI */ = {
 			isa = PBXGroup;
 			children = (
+				EFC9B77328C8DB69000A6452 /* Demostration */,
 				EF8D057E28C880DE000076E5 /* Components */,
 				EF8D056228C6727D000076E5 /* Extension */,
 				EF8D055F28C670BD000076E5 /* AnimatedViews */,
@@ -192,8 +201,19 @@
 				EF8D057F28C880F1000076E5 /* ImageView.swift */,
 				EF8D057828C86917000076E5 /* Navigation.swift */,
 				EF8D057A28C8730E000076E5 /* Button.swift */,
+				EFC9B76F28C8B5FC000A6452 /* Text.swift */,
+				EFC9B77128C8CBF1000A6452 /* RoundedButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		EFC9B77328C8DB69000A6452 /* Demostration */ = {
+			isa = PBXGroup;
+			children = (
+				EFC9B77428C8DB77000A6452 /* ImagesComponents.swift */,
+				EFC9B77628C8DCED000A6452 /* RoundedButtonComponents.swift */,
+			);
+			path = Demostration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,7 +349,10 @@
 				EF8D056C28C7043D000076E5 /* CascadingCardStack.swift in Sources */,
 				EF8D057028C73C66000076E5 /* Array.swift in Sources */,
 				EF8D056428C6728B000076E5 /* CGFloat.swift in Sources */,
+				EFC9B77228C8CBF1000A6452 /* RoundedButton.swift in Sources */,
+				EFC9B77728C8DCED000A6452 /* RoundedButtonComponents.swift in Sources */,
 				EF8D053828C670AA000076E5 /* ContentView.swift in Sources */,
+				EFC9B77028C8B5FC000A6452 /* Text.swift in Sources */,
 				EF8D057228C77641000076E5 /* SlideCardView.swift in Sources */,
 				EF8D057528C77854000076E5 /* CGSize.swift in Sources */,
 				EF8D056828C6FDA9000076E5 /* CommonComponents.swift in Sources */,
@@ -341,6 +364,7 @@
 				EF8D057B28C8730E000076E5 /* Button.swift in Sources */,
 				EF8D056A28C6FF0B000076E5 /* String.swift in Sources */,
 				EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */,
+				EFC9B77528C8DB77000A6452 /* ImagesComponents.swift in Sources */,
 				EF8D056128C670CF000076E5 /* SlideOverCarousel.swift in Sources */,
 				EF8D053628C670AA000076E5 /* StyleUIApp.swift in Sources */,
 			);

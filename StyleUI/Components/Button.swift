@@ -97,7 +97,9 @@ struct ButtonViewModifier: ViewModifier {
 	
 	
 	func body(content: Content) -> some View {
-		Button(action: handler) {
+		Button {
+			withAnimation(.easeInOut, handler)
+		} label: {
 			content
 		}.buttonStyle(CustomButtonStyle())
 	}
