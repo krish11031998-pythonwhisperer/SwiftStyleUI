@@ -19,13 +19,11 @@ extension Int {
 
 struct CascadingCard: ViewModifier {
 	
-	let limit: Int
 	let delta: Int
 	let offFactor: CGFloat
 	let pivotFactor: CGFloat
 	
-	init(limit: Int, delta: Int, offFactor: CGFloat = 50, pivotFactor: CGFloat = 10) {
-		self.limit = limit
+	init(delta: Int, offFactor: CGFloat = 50, pivotFactor: CGFloat = 10) {
 		self.delta = delta
 		self.offFactor = offFactor
 		self.pivotFactor = pivotFactor
@@ -48,8 +46,8 @@ struct CascadingCard: ViewModifier {
 
 extension View {
 	
-	func cascadingCard(limit: Int, delta: Int, offFactor: CGFloat = 50, pivotFactor: CGFloat = 10) -> some View {
-		modifier(CascadingCard(limit: limit, delta: delta, offFactor: offFactor, pivotFactor: pivotFactor))
+	func cascadingCard(delta: Int, offFactor: CGFloat = 50, pivotFactor: CGFloat = 10) -> some View {
+		modifier(CascadingCard(delta: delta, offFactor: offFactor, pivotFactor: pivotFactor))
 	}
 }
 
@@ -87,7 +85,6 @@ struct CascadingCardStack<Content: View>: View {
 		asyncMainAnimation(animation: .easeInOut) {
 			let delta = (xOff > 0 ? -1 : 1)
 			if abs(xOff) >= 25, self.currentIdx + delta >= 0 && self.currentIdx + delta <= self.data.count - 1 {
-				print("(DEBUG) currentIdx : \(self.currentIdx + delta), xOff: \(xOff) and delta : \(delta)")
 				self.currentIdx += delta
 			}
 			self.off = .zero
@@ -100,17 +97,14 @@ struct CascadingCardStack<Content: View>: View {
 				
 				let delta = data.offset - currentIdx
 				
-				if data.offset >= currentIdx - 2 &&  data.offset <= currentIdx + 2 {
+				if data.offset >= currentIdx - 3 &&  data.offset <= currentIdx + 3 {
 					viewBuilder(data.element)
-						.cascadingCard(limit: 2, delta: delta, offFactor: offFactor, pivotFactor: pivotFactor)
+						.cascadingCard(delta: delta, offFactor: offFactor, pivotFactor: pivotFactor)
 				}
 			}
 		}
 		.offset(x: off)
 		.gesture(DragGesture().onChanged(change(_:)).onEnded(end(_:)))
-		.onAppear {
-			print("(DEBUG) currentIdx : ",self.currentIdx)
-		}
 	}
 }
 
