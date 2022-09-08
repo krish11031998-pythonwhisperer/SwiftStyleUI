@@ -10,7 +10,7 @@ import SwiftUI
 
 //MARK: - View Modifier
 
-struct SlideZoomCard: ViewModifier {
+fileprivate struct SlideZoomCard: ViewModifier {
 	
 	let size: CGSize
 	@State var scale: CGFloat = 1
@@ -43,14 +43,14 @@ struct SlideZoomCard: ViewModifier {
 
 //MARK: - View Extension
 
-extension View {
+fileprivate extension View {
 	
 	func slideZoomCard(size: CGSize) -> some View { modifier(SlideZoomCard(size: size)) }
 }
 
 //MARK: - SlideZoomScroll
 
-struct SlideZoomScroll<Content: View>: View {
+public struct SlideZoomScroll<Content: View>: View {
 	
 	@State var currentIdx: Int = .zero
 	@State var off: CGFloat = .zero
@@ -67,7 +67,7 @@ struct SlideZoomScroll<Content: View>: View {
 		self.size = itemSize
 	}
 	
-	var body: some View {
+	public var body: some View {
 		ScrollView(.horizontal, showsIndicators: false) {
 			HStack(alignment: .center, spacing: spacing) {
 				ForEach(Array(data.enumerated()), id: \.offset) { data in
@@ -83,7 +83,7 @@ struct SlideZoomScroll<Content: View>: View {
 }
 
 
-struct SlideZoomCardCarousel_Preview: PreviewProvider {
+fileprivate struct SlideZoomCardCarousel_Preview: PreviewProvider {
 	
 	static var previews: some View {
 		SlideZoomScroll(data: [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue], itemSize: .init(width: 200, height: 200)) { color in

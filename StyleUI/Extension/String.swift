@@ -8,22 +8,22 @@
 import Foundation
 import SwiftUI
 
-protocol RenderableText {
+public protocol RenderableText {
 	var text: Text { get }
 }
 
 extension AttributedString: RenderableText {
 	
-	var text: Text { .init(self) }
+	public var text: Text { .init(self) }
 }
 
 extension String: RenderableText {
 	
-	var text: Text {
+	public var text: Text {
 		.init(self)
 	}
 	
-	func styled(font: UIFont, color: Color) -> RenderableText {
+	public func styled(font: UIFont, color: Color) -> RenderableText {
 		var attributedString = AttributedString(self)
 		attributedString.font = font
 		attributedString.foregroundColor = color

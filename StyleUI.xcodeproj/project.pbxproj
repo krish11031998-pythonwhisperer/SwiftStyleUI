@@ -21,7 +21,6 @@
 		EF8D056A28C6FF0B000076E5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056928C6FF0B000076E5 /* String.swift */; };
 		EF8D056C28C7043D000076E5 /* CascadingCardStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */; };
 		EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */; };
-		EF8D057028C73C66000076E5 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D056F28C73C66000076E5 /* Array.swift */; };
 		EF8D057228C77641000076E5 /* SlideCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057128C77641000076E5 /* SlideCardView.swift */; };
 		EF8D057528C77854000076E5 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057428C77854000076E5 /* CGSize.swift */; };
 		EF8D057728C866DD000076E5 /* AnimationCollectionMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D057628C866DD000076E5 /* AnimationCollectionMaster.swift */; };
@@ -38,6 +37,7 @@
 		EFC9B77D28C9A016000A6452 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */; };
 		EFC9B78028C9B9A2000A6452 /* CustomNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */; };
 		EFC9B78528C9E8E5000A6452 /* BottomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78428C9E8E5000A6452 /* BottomModal.swift */; };
+		EFC9B78728CA1E6A000A6452 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78628CA1E6A000A6452 /* Int.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +75,6 @@
 		EF8D056928C6FF0B000076E5 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CascadingCardStack.swift; sourceTree = "<group>"; };
 		EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideZoomScroll.swift; sourceTree = "<group>"; };
-		EF8D056F28C73C66000076E5 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		EF8D057128C77641000076E5 /* SlideCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideCardView.swift; sourceTree = "<group>"; };
 		EF8D057428C77854000076E5 /* CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
 		EF8D057628C866DD000076E5 /* AnimationCollectionMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCollectionMaster.swift; sourceTree = "<group>"; };
@@ -92,6 +91,7 @@
 		EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavView.swift; sourceTree = "<group>"; };
 		EFC9B78428C9E8E5000A6452 /* BottomModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomModal.swift; sourceTree = "<group>"; };
+		EFC9B78628CA1E6A000A6452 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +150,6 @@
 				EF8D053728C670AA000076E5 /* ContentView.swift */,
 				EF8D053928C670AA000076E5 /* Assets.xcassets */,
 				EF8D053B28C670AA000076E5 /* Preview Content */,
-				EF8D056728C6FDA9000076E5 /* CommonComponents.swift */,
 			);
 			path = StyleUI;
 			sourceTree = "<group>";
@@ -197,11 +196,11 @@
 				EF8D056328C6728B000076E5 /* CGFloat.swift */,
 				EF8D056528C6743B000076E5 /* View.swift */,
 				EF8D056928C6FF0B000076E5 /* String.swift */,
-				EF8D056F28C73C66000076E5 /* Array.swift */,
 				EF8D057428C77854000076E5 /* CGSize.swift */,
 				EFC9B76D28C8B25E000A6452 /* ViewStyling.swift */,
 				EFC9B77A28C99D75000A6452 /* EdgeInsets.swift */,
 				EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */,
+				EFC9B78628CA1E6A000A6452 /* Int.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -209,6 +208,7 @@
 		EF8D057E28C880DE000076E5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EF8D056728C6FDA9000076E5 /* CommonComponents.swift */,
 				EFC9B78328C9E8D6000A6452 /* PresentationViews */,
 				EFC9B77E28C9B94B000A6452 /* CustomNavigation */,
 				EF8D057F28C880F1000076E5 /* ImageView.swift */,
@@ -378,11 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF8D056C28C7043D000076E5 /* CascadingCardStack.swift in Sources */,
-				EF8D057028C73C66000076E5 /* Array.swift in Sources */,
 				EFC9B77D28C9A016000A6452 /* GlobalFunctions.swift in Sources */,
 				EF8D056428C6728B000076E5 /* CGFloat.swift in Sources */,
 				EFC9B77228C8CBF1000A6452 /* RoundedButton.swift in Sources */,
 				EFC9B77728C8DCED000A6452 /* RoundedButtonComponents.swift in Sources */,
+				EFC9B78728CA1E6A000A6452 /* Int.swift in Sources */,
 				EF8D053828C670AA000076E5 /* ContentView.swift in Sources */,
 				EFC9B77028C8B5FC000A6452 /* Text.swift in Sources */,
 				EF8D057228C77641000076E5 /* SlideCardView.swift in Sources */,

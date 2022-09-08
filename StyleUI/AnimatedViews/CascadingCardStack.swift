@@ -9,15 +9,7 @@ import Foundation
 import SwiftUI
 
 //typealias CascadingCardData = Any
-
-extension Int {
-	
-	var abs: Self { Swift.abs(self) }
-	var cgFloat: CGFloat { CGFloat(self) }
-	var double: Double { Double(self) }
-}
-
-struct CascadingCard: ViewModifier {
+fileprivate struct CascadingCard: ViewModifier {
 	
 	let delta: Int
 	let offFactor: CGFloat
@@ -44,14 +36,14 @@ struct CascadingCard: ViewModifier {
 }
 
 
-extension View {
+fileprivate extension View {
 	
 	func cascadingCard(delta: Int, offFactor: CGFloat = 50, pivotFactor: CGFloat = 10) -> some View {
 		modifier(CascadingCard(delta: delta, offFactor: offFactor, pivotFactor: pivotFactor))
 	}
 }
 
-struct CascadingCardStack<Content: View>: View {
+public struct CascadingCardStack<Content: View>: View {
 	
 	@State var currentIdx: Int
 	@State var offset: CGFloat = .zero
@@ -71,14 +63,14 @@ struct CascadingCardStack<Content: View>: View {
 		self.pivotFactor = pivotFactor
 	}
 	
-	func change(_ value: DragGesture.Value) {
+	public func change(_ value: DragGesture.Value) {
 		let xOff = value.translation.width
 		asyncMainAnimation(animation: .easeInOut) {
 			self.off = xOff
 		}
 	}
 	
-	func end(_ value: DragGesture.Value) {
+	public func end(_ value: DragGesture.Value) {
 		let xOff = value.translation.width
 		asyncMainAnimation(animation: .easeInOut) {
 			let delta = (xOff > 0 ? -1 : 1)
@@ -89,7 +81,11 @@ struct CascadingCardStack<Content: View>: View {
 		}
 	}
 	
-	var body: some View {
+	private var dragGesture: some Gesture {
+		DragGesture().onChanged(change(_:)).onEnded(end(_:))
+	}
+	
+	public var body: some View {
 		ZStack(alignment: .center) {
 			ForEach(Array(data.enumerated()), id: \.offset) { data in
 				
@@ -102,14 +98,13 @@ struct CascadingCardStack<Content: View>: View {
 				}
 			}
 		}
-		.gesture(DragGesture().onChanged(change(_:)).onEnded(end(_:)))
+		.gesture(dragGesture)
 		.frame(width: .totalWidth)
-		
 	}
 }
 
 
-struct CascadingCardStack_Preview: PreviewProvider {
+fileprivate struct CascadingCardStack_Preview: PreviewProvider {
 	
 	static var previews: some View {
 		CascadingCardStack(data: [Color.red, Color.blue, Color.mint,Color.red, Color.blue]) { color in

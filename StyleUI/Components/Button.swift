@@ -27,7 +27,7 @@ extension Image.Catalogue {
 
 // MARK: - CustomButton
 
-struct CustomButtonConfig {
+public struct CustomButtonConfig {
 	let imageName: Image.Catalogue
 	let text: String?
 	let size: CGSize
@@ -43,7 +43,7 @@ struct CustomButtonConfig {
 	}
 }
 
-struct CustomButton: View {
+public struct CustomButton: View {
 	
 	let config: CustomButtonConfig
 	let action: Callback?
@@ -53,7 +53,7 @@ struct CustomButton: View {
 		self.action = action
 	}
 	
-	var body: some View {
+	public var body: some View {
 		HStack(alignment: .center, spacing: 5) {
 			config.imageName.image
 				.resizable()
@@ -75,7 +75,7 @@ struct CustomButton: View {
 
 // MARK: - CustomButtonModifier
 
-struct CustomButtonStyle: ButtonStyle {
+fileprivate struct CustomButtonStyle: ButtonStyle {
 	
 	func makeBody(configuration: Configuration) -> some View {
 		configuration.label
@@ -86,7 +86,7 @@ struct CustomButtonStyle: ButtonStyle {
 
 //MARK: - ButtonViewModifier
 
-struct ButtonViewModifier: ViewModifier {
+fileprivate struct ButtonViewModifier: ViewModifier {
 	
 	let handler: () -> Void
 	let animation: Animation
@@ -106,7 +106,7 @@ struct ButtonViewModifier: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	
 	func buttonify(animation: Animation = .default ,action: @escaping () -> Void) -> some View {
 		modifier(ButtonViewModifier(animation: animation, handler: action))

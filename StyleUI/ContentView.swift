@@ -28,39 +28,39 @@ struct ContentView: View {
 		return navAppearance
 	}
 	
-    var body: some View {
-			ScrollView(.vertical, showsIndicators: false) {
-				VStack(alignment: .leading, spacing: 20) {
-					HeaderSubHeadView(title: "Animated Collections", subTitle: "Here you can see all the animatable fancy collections")
+	var body: some View {
+		ScrollView(.vertical, showsIndicators: false) {
+			VStack(alignment: .leading, spacing: 20) {
+				HeaderSubHeadView(title: "Animated Collections", subTitle: "Here you can see all the animatable fancy collections")
 					.buttonify {
-							self.appStates.showAnimation.toggle()
-						}
-					HeaderSubHeadView(title: "Image", subTitle: "Every thing you can do with an image")
-						.buttonify {
-							self.appStates.imageView.toggle()
-						}
-					HeaderSubHeadView(title: "Rounded Button", subTitle: "Custom Rounded Button with custom Config")
-						.buttonify {
-							self.appStates.roundedButton.toggle()
-						}
-					
-					HeaderSubHeadView(title: "Custom NavBar", subTitle: "Custom Navigation Bar")
-						.buttonify {
-							self.appStates.navBar.toggle()
-						}
-						
-				}.padding()
+						self.appStates.showAnimation.toggle()
+					}
+				HeaderSubHeadView(title: "Image", subTitle: "Every thing you can do with an image")
+					.buttonify {
+						self.appStates.imageView.toggle()
+					}
+				HeaderSubHeadView(title: "Rounded Button", subTitle: "Custom Rounded Button with custom Config")
+					.buttonify {
+						self.appStates.roundedButton.toggle()
+					}
+				
+				HeaderSubHeadView(title: "Custom NavBar (Work in Progress)", subTitle: "Custom Navigation Bar")
+					.buttonify {
+						self.appStates.navBar.toggle()
+					}
+				
+			}.padding()
 				.frame(maxWidth: .infinity, alignment: .leading)
-				
-				
-				animatedCollectionsLink
-				imageNavLink
-				roundedButtonLink
-				customNavBarLink
-			}
-			.navigationBarHidden(true)
-			.customNavbarAppearance(navbarAppearance: navBarAppearance)
-    }
+			
+			
+			animatedCollectionsLink
+			imageNavLink
+			roundedButtonLink
+			customNavBarLink
+		}
+		.navigationBarHidden(true)
+		.customNavbarAppearance(navbarAppearance: navBarAppearance)
+	}
 }
 
 extension ContentView {

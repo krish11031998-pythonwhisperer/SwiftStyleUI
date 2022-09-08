@@ -13,7 +13,7 @@ typealias Callback = () -> Void
 
 //MARK: -  RoundedButtonModel
 
-struct RoundedButtonModel {
+public struct RoundedButtonModel {
 	
 	struct RoundedButtonImageModel {
 		let img: UIImage?
@@ -121,7 +121,7 @@ extension RoundedButtonModel {
 
 //MARK: - RoundedButton
 
-struct RoundedButton: View {
+public struct RoundedButton: View {
 
 	let model: RoundedButtonModel
 	
@@ -129,7 +129,7 @@ struct RoundedButton: View {
 		self.model = model
 	}
 	
-	var leadingStack: some View {
+	private var leadingStack: some View {
 		VStack(alignment: .leading) {
 			if let validTopLeadingText = model.topLeadingText {
 				validTopLeadingText.text
@@ -141,7 +141,7 @@ struct RoundedButton: View {
 		}
 	}
 	
-	var trailingStack: some View {
+	private var trailingStack: some View {
 		VStack(alignment: .trailing) {
 			if let validTopTrailingText = model.topTrailingText {
 				validTopTrailingText.text
@@ -154,7 +154,7 @@ struct RoundedButton: View {
 	}
 	
 	
-	var mainButton: some View {
+	private var mainButton: some View {
 		HStack(alignment: .center, spacing: 10) {
 			if model.leadingImg != nil {
 				ImageView(url: model.leadingImg?.imgUrl, image: model.leadingImg?.img)
@@ -173,7 +173,7 @@ struct RoundedButton: View {
 		
 	}
 	
-	var body: some View {
+	public var body: some View {
 		if let blob = model.blob {
 			mainButton
 				.blobify(background: blob.backgroundColor, padding: blob.padding, cornerRadius: blob.cornerRadius)

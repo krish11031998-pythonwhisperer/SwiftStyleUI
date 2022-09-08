@@ -8,7 +8,7 @@
 import SwiftUI
 
 //MARK: - TransitionFromEdge
-struct TransitionFromEdge: ViewModifier {
+fileprivate struct TransitionFromEdge: ViewModifier {
 	
 	let edge: Edge
 	
@@ -19,7 +19,7 @@ struct TransitionFromEdge: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	
 	func transitionFrom(_ edge:Edge) -> some View {
 		modifier(TransitionFromEdge(edge: edge))
@@ -28,21 +28,21 @@ extension View {
 
 //MARK: - SlideInFromBottom ViewModifier
 
-struct ModalConfig {
+public struct ModalConfig {
 	let bgColor: Color
 	let dimmingBG: Color
 	let cornerRadius: CGFloat
 	
-	var maxHeight: CGFloat {
+	public var maxHeight: CGFloat {
 		.totalHeight * 0.75
 	}
 	
-	static var defaultConfig: Self {
+	public static var defaultConfig: Self {
 		.init(bgColor: .white, dimmingBG: .black, cornerRadius: 16)
 	}
 }
 
-struct SlideInFromBottom<Modal: View>: ViewModifier {
+fileprivate struct SlideInFromBottom<Modal: View>: ViewModifier {
 	@Binding var showModal: Bool
 	@State var modalHeight: CGFloat = .zero
 	@State var dynamicHeight: CGFloat = .zero
@@ -76,10 +76,9 @@ struct SlideInFromBottom<Modal: View>: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	
-	func slideInFromBottomModal<Modal:View>(showModal: Binding<Bool>,
-											modalConfig: ModalConfig = .defaultConfig,
+	func slideInFromBottomModal<Modal:View>(showModal: Binding<Bool>, modalConfig: ModalConfig = .defaultConfig,
 											@ViewBuilder modal: @escaping () -> Modal) -> some View
 	{
 		modifier(SlideInFromBottom(showModal: showModal, modalConfig: modalConfig, modal: {
@@ -89,7 +88,7 @@ extension View {
 }
 
 
-struct BottomModal_Previews: PreviewProvider {
+fileprivate struct BottomModal_Previews: PreviewProvider {
     static var previews: some View {
 		Color.blue
 			.frame(width: .totalWidth, height: .totalHeight, alignment: .center)

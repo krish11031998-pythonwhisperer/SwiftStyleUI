@@ -10,7 +10,7 @@ import SwiftUI
 
 //MARK: - Head SubHead View
 
-struct HeaderSubHeadView: View {
+public struct HeaderSubHeadView: View {
 	
 	let title: String
 	let subTitle: String
@@ -24,7 +24,7 @@ struct HeaderSubHeadView: View {
 		self.alignment = alignment
 	}
 	
-	var body: some View {
+	public var body: some View {
 		VStack(alignment: alignment.horizontal, spacing: 10) {
 			title.styled(font: .boldSystemFont(ofSize: 15), color: .black).text
 			subTitle.styled(font: .systemFont(ofSize: 12, weight: .regular), color: .black).text
@@ -35,7 +35,7 @@ struct HeaderSubHeadView: View {
 
 //MARK: -  Head Caption View
 
-struct HeaderCaptionView: View {
+public struct HeaderCaptionView: View {
 	
 	let title: String
 	let subTitle: String
@@ -49,7 +49,7 @@ struct HeaderCaptionView: View {
 		self.alignment = alignment
 	}
 	
-	var body: some View {
+	public var body: some View {
 		HStack(alignment: alignment.vertical, spacing: 10) {
 			title.styled(font: .boldSystemFont(ofSize: 15), color: .black).text
 			Spacer()

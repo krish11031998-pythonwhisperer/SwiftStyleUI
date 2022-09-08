@@ -10,7 +10,7 @@ import SwiftUI
 
 //MARK: - Navigation Modifier
 
-struct NavigationModifier: ViewModifier {
+fileprivate struct NavigationModifier: ViewModifier {
 	
 	@Binding var isActive: Bool
 	
@@ -28,7 +28,7 @@ struct NavigationModifier: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	
 	func navigationLink(isActive: Binding<Bool>) -> some View {
 		modifier(NavigationModifier(isActive: isActive))
@@ -36,7 +36,7 @@ extension View {
 }
 
 // MARK: - NavLink
-struct NavLink<Content: View>: View {
+public struct NavLink<Content: View>: View {
 	
 	@Binding var isActive: Bool
 	let content: Content
@@ -57,14 +57,14 @@ struct NavLink<Content: View>: View {
 		self.titleView = titleView?()
 	}
 	
-	var mainBody: some View {
+	private var mainBody: some View {
 		content
 			.navigationBarItems(leading: leadingBarItem ?? defaultBackButton, trailing: trailingBarItem)
 			.navigationBarBackButtonHidden(true)
 			.navigationBarTitleDisplayMode(.inline)
 	}
 	
-	var body: some View {
+	public var body: some View {
 		NavigationLink(isActive: $isActive) {
 			if let customTitleView = titleView {
 				mainBody
@@ -80,7 +80,7 @@ struct NavLink<Content: View>: View {
 	
 }
 
-extension NavLink {
+fileprivate extension NavLink {
 	
 	var defaultBackButton: AnyView {
 		let config: CustomButtonConfig = .init(imageName: .back, size: .init(squared: 15), foregroundColor: .white, backgroundColor: .black)

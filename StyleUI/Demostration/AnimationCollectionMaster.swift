@@ -74,13 +74,6 @@ struct AnimationCollectionMaster: View {
 							.scaleEffect(0.85)
 						}
 				}.containerize(header: headerBuilder(title: "Slide Card View"))
-				
-				
-				SlideZoomScroll(data: colors, itemSize: .init(width: 200, height: 200)) { color in
-					RoundedRectangle(cornerRadius: 20)
-						.fill((color as? Color) ?? .red)
-						.frame(width: 200, height: 200)
-				}.containerize(header: headerBuilder(title: "Slide Zoom Scroll"))
 			
 			}
 		}

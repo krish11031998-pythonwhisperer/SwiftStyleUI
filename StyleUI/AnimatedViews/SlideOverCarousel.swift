@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct SlideCard: ViewModifier {
+fileprivate struct SlideCard: ViewModifier {
 	
 	var isPrev: Bool
 	var isNext: Bool
@@ -33,14 +33,14 @@ struct SlideCard: ViewModifier {
 	}
 }
 
-extension View {
+fileprivate extension View {
 	
 	func slideCard(isPrev: Bool, isNext: Bool) -> some View {
 		self.modifier(SlideCard(isPrev: isPrev, isNext: isNext))
 	}
 }
 
-struct SlideOverCarousel<Content: View>: View {
+public struct SlideOverCarousel<Content: View>: View {
 	
 	var data: [Any]
 	var viewBuilder: (Any) -> Content
@@ -50,20 +50,6 @@ struct SlideOverCarousel<Content: View>: View {
 		self.data = data
 		self.viewBuilder = viewBuilder
 	}
-
-	
-	@ViewBuilder func cardBuilder(data: Any) -> some View {
-		
-		if let color = data as? Color {
-			RoundedRectangle(cornerRadius: 20)
-				.fill(color)
-				.frame(width: .totalWidth - 20, height: 200, alignment: .center)
-		} else {
-			RoundedRectangle(cornerRadius: 20)
-				.fill(Color.black)
-				.frame(width: .totalWidth - 20, height: 200, alignment: .center)
-		}
-	}
 	
 	private func handleTap() {
 		asyncMainAnimation {
@@ -71,7 +57,7 @@ struct SlideOverCarousel<Content: View>: View {
 		}
 	}
 	
-	var body: some View {
+	public var body: some View {
 		ZStack(alignment: .center) {
 			ForEach(Array(data.enumerated()), id: \.offset) { data in
 				if data.offset >= currentIdx - 1 && data.offset <= currentIdx + 1 {
@@ -84,7 +70,7 @@ struct SlideOverCarousel<Content: View>: View {
 	}
 }
 
-struct SlideOverCarouselPreviewProvider: PreviewProvider {
+fileprivate struct SlideOverCarouselPreviewProvider: PreviewProvider {
 	static var previews: some View {
 		SlideOverCarousel(data:[Color.red, Color.blue, Color.brown, Color.mint]) { color in
 			RoundedRectangle(cornerRadius: 20)

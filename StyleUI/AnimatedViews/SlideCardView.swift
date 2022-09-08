@@ -8,9 +8,8 @@
 import Foundation
 import SwiftUI
 
-
-
-struct SlideCardView<Content: View>: View {
+//MARK: - SlideCardView
+public struct SlideCardView<Content: View>: View {
 	
 	let data:[Any]
 	let viewBuilder: (Any,Bool) -> Content
@@ -86,7 +85,7 @@ struct SlideCardView<Content: View>: View {
 		DragGesture().onChanged(onChanged(_:)).onEnded(onEnded(_:))
 	}
 	
-	var body: some View {
+	public var body: some View {
 		HStack(alignment: .center, spacing: spacing) {
 			Spacer().frame(size: .init(width: leading ? 0 : (.totalWidth - size.width).half, height: 10))
 			ForEach(Array(data.enumerated()), id: \.offset) { data in
@@ -108,7 +107,7 @@ struct SlideCardView<Content: View>: View {
 	}
 }
 
-struct SlideCardView_Preview: PreviewProvider {
+fileprivate struct SlideCardView_Preview: PreviewProvider {
 	
 	static var previews: some View {
 		ZStack(alignment: .center) {

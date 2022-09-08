@@ -9,17 +9,17 @@ import SwiftUI
 
 //MARK: - ImageLoadError
 
-enum ImageLoadError: String, Error {
+public enum ImageLoadError: String, Error {
 	case invalidURL = "Invalid Url"
 	case unknown = "Unknown Error"
 	case imageDownlodFail = "(FAIL) Image was not downloaded"
 }
 
-typealias UIImageResult = (Result<UIImage,ImageLoadError>) -> Void
+public typealias UIImageResult = (Result<UIImage,ImageLoadError>) -> Void
 
 //MARK: - UIImage Extension
 
-extension UIImage {
+public extension UIImage {
 	
 	static var cache: NSCache<NSString,UIImage> = { .init() }()
 	
@@ -69,7 +69,7 @@ extension UIImage {
 
 //MARK: - ImageView - Component
 
-struct ImageView: View {
+public struct ImageView: View {
 	@State var image: UIImage? = nil
 	let url: String?
 	
@@ -95,7 +95,7 @@ struct ImageView: View {
 		
 	}
 	
-	var body: some View {
+	public var body: some View {
 		ZStack(alignment: .center) {
 			Color.gray.opacity(0.15)
 			if let validImage = image {
@@ -109,7 +109,7 @@ struct ImageView: View {
 	}
 }
 
-extension View {
+public extension View {
 	
 	func framed(size: CGSize, cornerRadius: CGFloat = 8, alignment: Alignment = .center) -> some View {
 		self.frame(size: size, alignment: alignment)
@@ -118,7 +118,7 @@ extension View {
 }
 
 //MARK: - Preview
-struct ImageView_Previews: PreviewProvider {
+fileprivate struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
 		ImageView(url: UIImage.testImage)
 			.frame(size: .init(width: 200, height: 200))

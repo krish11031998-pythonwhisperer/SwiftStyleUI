@@ -10,7 +10,7 @@ import SwiftUI
 
 //MARK: View Styling
 
-struct BorderCard: ViewModifier {
+fileprivate struct BorderCard: ViewModifier {
 	
 	var borderColor: Color
 	var radius: CGFloat
@@ -32,7 +32,7 @@ struct BorderCard: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	
 	func borderCard(borderColor: Color, radius: CGFloat = 8, borderWidth: CGFloat = 1) -> some View {
 		modifier(BorderCard(borderColor: borderColor, radius: radius, borderWidth: borderWidth))

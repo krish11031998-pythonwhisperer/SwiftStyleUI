@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 //MARK: - Common View
-extension View {
+public extension View {
 	func frame(size: CGSize, alignment: Alignment = .center) -> some View {
 		self.frame(width: size.width, height: size.height, alignment: alignment)
 	}
@@ -27,7 +27,7 @@ extension View {
 
 //MARK: - Clipping Content
 
-struct ClipContent: ViewModifier {
+fileprivate struct ClipContent: ViewModifier {
 	var radius: CGFloat
 	func body(content: Content) -> some View {
 		content
@@ -36,7 +36,7 @@ struct ClipContent: ViewModifier {
 	}
 }
 
-extension View {
+public extension View {
 	
 	func clipContent(radius: CGFloat) -> some View {
 		modifier(ClipContent(radius: radius))
@@ -46,7 +46,7 @@ extension View {
 
 //MARK: - Navigation Stack
 
-struct CustomNavigatonStyle: ViewModifier {
+fileprivate struct CustomNavigatonStyle: ViewModifier {
 
 	init(navbarAppearance: UINavigationBarAppearance) {
 		UINavigationBar.appearance().standardAppearance = navbarAppearance
@@ -70,7 +70,7 @@ struct CustomNavigatonStyle: ViewModifier {
 	
 }
 
-extension View {
+public extension View {
 	
 	func customNavbarAppearance(navbarAppearance: UINavigationBarAppearance) -> some View {
 		modifier(CustomNavigatonStyle(navbarAppearance: navbarAppearance))
@@ -85,7 +85,7 @@ extension View {
 
 //MARK: - View Custom Extension
 
-struct Blobify: ViewModifier {
+fileprivate struct Blobify: ViewModifier {
 	let background: Color
 	let padding: CGFloat
 	let cornerRadius: CGFloat
@@ -105,7 +105,7 @@ struct Blobify: ViewModifier {
 	
 }
 
-extension View {
+public extension View {
 	
 	func blobify(background: Color = .clear, padding: CGFloat = 10, cornerRadius: CGFloat)  -> some View {
 		modifier(Blobify(background: background, padding: padding, cornerRadius: cornerRadius))

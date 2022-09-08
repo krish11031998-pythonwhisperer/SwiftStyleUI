@@ -11,11 +11,11 @@ import SwiftUI
 
 //MARK: - Size Preference Key
 
-struct SizePreferenceKey: PreferenceKey {
+public struct SizePreferenceKey: PreferenceKey {
 	
-	static var defaultValue: CGSize = .zero
+	public static var defaultValue: CGSize = .zero
 	
-	static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
+	public static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
 		value = nextValue()
 	}
 }
@@ -23,7 +23,7 @@ struct SizePreferenceKey: PreferenceKey {
 
 //MARK: - CGSize Extension
 
-extension CGSize {
+public extension CGSize {
 	init(squared: CGFloat) {
 		self.init(width: squared, height: squared)
 	}

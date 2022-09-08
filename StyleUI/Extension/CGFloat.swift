@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-extension CGFloat {
+public extension CGFloat {
 	static var totalWidth: CGFloat { UIScreen.main.bounds.width }
 	static var totalHeight: CGFloat { UIScreen.main.bounds.height }
 	
@@ -40,7 +40,7 @@ extension CGFloat {
 	}
 }
 
-extension ClosedRange where Bound == CGFloat {
+public extension ClosedRange where Bound == CGFloat {
 	
 	func normalize(_ val: CGFloat) -> CGFloat {
 		let max = upperBound
