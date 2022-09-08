@@ -16,7 +16,7 @@ extension CGFloat {
 	
 	func boundedTo(lower: Self = 0, higher: Self = 1) -> Self { self < lower ? lower : self > higher ? higher : self }
 	
-	static var safeAreaInset: UIEdgeInsets {
+	static var safeAreaInsets: UIEdgeInsets {
 		
 		let keyWindow = UIApplication.shared.connectedScenes
 		
@@ -33,7 +33,10 @@ extension CGFloat {
 		
 		
 		return (keyWindow?.safeAreaInsets) ?? .zero
-		
+	}
+	
+	static var safeAreaVerticalInsets: CGFloat {
+		Self.safeAreaInsets.top + Self.safeAreaInsets.bottom
 	}
 }
 

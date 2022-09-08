@@ -83,12 +83,10 @@ struct NavLink<Content: View>: View {
 extension NavLink {
 	
 	var defaultBackButton: AnyView {
-		let cofig: CustomButtonConfig = .init(imageName: .back, size: .init(squared: 15), foregroundColor: .white, backgroundColor: .black) {
-			asyncMainAnimation {
-				self.isActive.toggle()
-			}
+		let config: CustomButtonConfig = .init(imageName: .back, size: .init(squared: 15), foregroundColor: .white, backgroundColor: .black)
+		let button = CustomButton(config: config) {
+			isActive.toggle()
 		}
-		
-		return CustomButton(config: cofig).anyView
+		return button.anyView
 	}
 }

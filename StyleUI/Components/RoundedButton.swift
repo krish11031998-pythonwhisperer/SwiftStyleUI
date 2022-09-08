@@ -52,7 +52,7 @@ struct RoundedButtonModel {
 	let topTrailingText: RenderableText?
 	let bottomTrailingText: RenderableText?
 	let blob: RoundedButtonBlob?
-	let handler: Callback?
+	var handler: Callback?
 
 	
 	init(

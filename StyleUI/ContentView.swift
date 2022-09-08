@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-//	@State var showAnimation: Bool = false
-//	@State var imageView: Bool = false
-//	@State var roundedButton: Bool = false
-//	@State var navBar: Bool = false
 	@EnvironmentObject var appStates: MainAppStates
 	@State var paddingHeight: CGFloat = .zero
 	
@@ -94,18 +90,18 @@ extension ContentView {
 	
 	var leftBar: some View{
 		HStack(alignment: .center, spacing: 5) {
-			CustomButton(config: .init(imageName: .back) {
+			CustomButton(config: .init(imageName: .back)) {
 				print("(DEBUG) clicked on backButton")
 				appStates.navBar.toggle()
-			})
+			}
 		}
 	}
 	
 	var rightBar: some View{
 		HStack(alignment: .center, spacing: 5) {
-			CustomButton(config: .init(imageName: .next) {
+			CustomButton(config: .init(imageName: .next)) {
 				print("(DEBUG) clicked on nextButton")
-			})
+			}
 		}
 	}
 	

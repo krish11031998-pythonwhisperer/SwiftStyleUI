@@ -16,6 +16,7 @@ extension Image {
 	enum Catalogue: String {
 		case back = "arrow.left"
 		case next = "arrow.right"
+		case close = "xmark"
 	}
 }
 
@@ -32,43 +33,43 @@ struct CustomButtonConfig {
 	let size: CGSize
 	let foregroundColor: Color
 	let backgroundColor: Color
-	let action: () -> Void
 	
-	init(imageName: Image.Catalogue, text: String? = nil, size: CGSize = .init(squared: 15), foregroundColor: Color = .white, backgroundColor: Color = .black, action: @escaping () -> Void) {
+	init(imageName: Image.Catalogue, text: String? = nil, size: CGSize = .init(squared: 10), foregroundColor: Color = .white, backgroundColor: Color = .black) {
 		self.imageName = imageName
 		self.text = text
 		self.size = size
 		self.foregroundColor = foregroundColor
 		self.backgroundColor = backgroundColor
-		self.action = action
 	}
 }
 
 struct CustomButton: View {
 	
 	let config: CustomButtonConfig
+	let action: Callback?
 	
-	init(config: CustomButtonConfig) {
+	init(config: CustomButtonConfig, action: Callback? = nil) {
 		self.config = config
+		self.action = action
 	}
 	
 	var body: some View {
-		Button(action: config.action) {
-			HStack(alignment: .center, spacing: 5) {
-				config.imageName.image
-					.resizable()
-					.scaledToFit()
-					.foregroundColor(config.foregroundColor)
-					.frame(size: config.size)
-					.padding(5)
-					.background(config.backgroundColor)
-					.clipShape(Circle())
-				if let validText = config.text {
-					validText.text
-				}
+		HStack(alignment: .center, spacing: 5) {
+			config.imageName.image
+				.resizable()
+				.scaledToFit()
+				.foregroundColor(config.foregroundColor)
+				.frame(size: config.size)
+				.padding(10)
+				.background(config.backgroundColor)
+				.clipShape(Circle())
+			if let validText = config.text {
+				validText.text
 			}
 		}
-		.buttonStyle(CustomButtonStyle())
+		.buttonify {
+			action?()
+		}
 	}
 }
 
@@ -88,15 +89,17 @@ struct CustomButtonStyle: ButtonStyle {
 struct ButtonViewModifier: ViewModifier {
 	
 	let handler: () -> Void
+	let animation: Animation
 	
-	init(handler: @escaping () -> Void) {
+	init(animation: Animation, handler: @escaping () -> Void) {
 		self.handler = handler
+		self.animation = animation
 	}
 	
 	
 	func body(content: Content) -> some View {
 		Button {
-			withAnimation(.easeInOut, handler)
+			asyncMainAnimation(animation: animation, completion: handler)
 		} label: {
 			content
 		}.buttonStyle(CustomButtonStyle())
@@ -105,7 +108,7 @@ struct ButtonViewModifier: ViewModifier {
 
 extension View {
 	
-	func buttonify(action: @escaping () -> Void) -> some View {
-		modifier(ButtonViewModifier(handler: action))
+	func buttonify(animation: Animation = .default ,action: @escaping () -> Void) -> some View {
+		modifier(ButtonViewModifier(animation: animation, handler: action))
 	}
 }

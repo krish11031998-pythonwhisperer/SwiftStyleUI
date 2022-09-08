@@ -92,7 +92,7 @@ struct CustomNavBar<LeftBarItems: View, Title: View, RightBarItems: View>: View 
 				Spacer()
 				rightBarItems()
 			}
-			.padding(.init(top: .safeAreaInset.top, leading: 15, bottom: 15, trailing: 15))
+			.padding(.init(top: .safeAreaInsets.top, leading: 15, bottom: 15, trailing: 15))
 			.frame(width: .totalWidth, alignment: .top)
 			.background(
 				GeometryReader { g -> AnyView in
@@ -115,17 +115,17 @@ struct CustomNavBar_Previews: PreviewProvider {
 	
 	 static var leftBar: some View {
 		HStack(alignment: .center, spacing: 5) {
-			CustomButton(config: .init(imageName: .back) {
+			CustomButton(config: .init(imageName: .back)) {
 				print("(DEBUG) clicked on backButton")
-			})
+			}
 		}
 	}
 	
 	static var rightBar: some View {
 		HStack(alignment: .center, spacing: 5) {
-			CustomButton(config: .init(imageName: .next) {
+			CustomButton(config: .init(imageName: .next)) {
 				print("(DEBUG) clicked on nextButton")
-			})
+			}
 		}
 	}
 

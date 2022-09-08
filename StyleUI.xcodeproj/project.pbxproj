@@ -37,6 +37,7 @@
 		EFC9B77B28C99D75000A6452 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77A28C99D75000A6452 /* EdgeInsets.swift */; };
 		EFC9B77D28C9A016000A6452 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */; };
 		EFC9B78028C9B9A2000A6452 /* CustomNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */; };
+		EFC9B78528C9E8E5000A6452 /* BottomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78428C9E8E5000A6452 /* BottomModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		EFC9B77A28C99D75000A6452 /* EdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
 		EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavView.swift; sourceTree = "<group>"; };
+		EFC9B78428C9E8E5000A6452 /* BottomModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 		EF8D057E28C880DE000076E5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EFC9B78328C9E8D6000A6452 /* PresentationViews */,
 				EFC9B77E28C9B94B000A6452 /* CustomNavigation */,
 				EF8D057F28C880F1000076E5 /* ImageView.swift */,
 				EF8D057828C86917000076E5 /* Navigation.swift */,
@@ -234,6 +237,14 @@
 				EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */,
 			);
 			path = CustomNavigation;
+			sourceTree = "<group>";
+		};
+		EFC9B78328C9E8D6000A6452 /* PresentationViews */ = {
+			isa = PBXGroup;
+			children = (
+				EFC9B78428C9E8E5000A6452 /* BottomModal.swift */,
+			);
+			path = PresentationViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +397,7 @@
 				EFC9B78028C9B9A2000A6452 /* CustomNavView.swift in Sources */,
 				EFC9B77928C9171D000A6452 /* CustomNavBar.swift in Sources */,
 				EFC9B77B28C99D75000A6452 /* EdgeInsets.swift in Sources */,
+				EFC9B78528C9E8E5000A6452 /* BottomModal.swift in Sources */,
 				EF8D056A28C6FF0B000076E5 /* String.swift in Sources */,
 				EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */,
 				EFC9B77528C8DB77000A6452 /* ImagesComponents.swift in Sources */,
