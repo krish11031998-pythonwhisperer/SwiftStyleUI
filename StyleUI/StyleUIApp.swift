@@ -7,11 +7,22 @@
 
 import SwiftUI
 
+class MainAppStates: ObservableObject {
+	@Published var showAnimation: Bool = false
+	@Published var imageView: Bool = false
+	@Published var roundedButton: Bool = false
+	@Published var navBar: Bool = false
+}
+
 @main
 struct StyleUIApp: App {
+	
+	@StateObject var appStates: MainAppStates = .init()
+	
     var body: some Scene {
         WindowGroup {
             ContentView()
+				.environmentObject(appStates)
         }
     }
 }

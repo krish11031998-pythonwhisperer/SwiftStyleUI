@@ -15,6 +15,26 @@ extension CGFloat {
 	var half: Self { self * 0.5 }
 	
 	func boundedTo(lower: Self = 0, higher: Self = 1) -> Self { self < lower ? lower : self > higher ? higher : self }
+	
+	static var safeAreaInset: UIEdgeInsets {
+		
+		let keyWindow = UIApplication.shared.connectedScenes
+		
+			.filter({$0.activationState == .foregroundActive})
+		
+			.map({$0 as? UIWindowScene})
+		
+			.compactMap({$0})
+		
+			.first?.windows
+		
+			.filter({$0.isKeyWindow}).first
+		
+		
+		
+		return (keyWindow?.safeAreaInsets) ?? .zero
+		
+	}
 }
 
 extension ClosedRange where Bound == CGFloat {

@@ -8,7 +8,10 @@
 import Foundation
 import SwiftUI
 
+//MARK: - Definations
 typealias Callback = () -> Void
+
+//MARK: -  RoundedButtonModel
 
 struct RoundedButtonModel {
 	
@@ -73,6 +76,51 @@ struct RoundedButtonModel {
 	}
 }
 
+extension RoundedButtonModel {
+	static var testModelLeading: RoundedButtonModel {
+		let leadingImg = RoundedButtonModel.RoundedButtonImageModel(imgURL: UIImage.testImage, cornerRadius: 16)
+		return .init(leadingImg: leadingImg,
+					 topLeadingText: "Title".styled(font: .systemFont(ofSize: 15, weight: .semibold), color: .black),
+					 bottomLeadingText: "SubTitle".styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black),
+					 topTrailingText: "Caption".styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black),
+					 bottomTrailingText: "SubCaption".styled(font: .systemFont(ofSize: 12, weight: .regular), color: .black))
+		
+	}
+
+	static var testModelTrailing: RoundedButtonModel {
+		let trailingImg = RoundedButtonModel.RoundedButtonImageModel(imgURL: UIImage.testImage, cornerRadius: 16)
+		return .init(trailingImg: trailingImg,
+					 topLeadingText: "Title".styled(font: .systemFont(ofSize: 15, weight: .semibold), color: .black),
+					 bottomLeadingText: "SubTitle".styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black),
+					 topTrailingText: "Caption".styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black),
+					 bottomTrailingText: "SubCaption".styled(font: .systemFont(ofSize: 12, weight: .regular), color: .black))
+		
+	}
+
+	static var testModel: RoundedButtonModel {
+		return .init(topLeadingText: "Title".styled(font: .systemFont(ofSize: 15, weight: .semibold), color: .black),
+					 bottomLeadingText: "SubTitle".styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black),
+					 topTrailingText: "Caption".styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black),
+					 bottomTrailingText: "SubCaption".styled(font: .systemFont(ofSize: 12, weight: .regular), color: .black))
+		
+	}
+
+	static var testModelWithBlob: RoundedButtonModel {
+		let leadingImg = RoundedButtonModel.RoundedButtonImageModel(imgURL: UIImage.testImage, cornerRadius: 16)
+		let trailingImg = RoundedButtonModel.RoundedButtonImageModel(imgURL: UIImage.testImage, cornerRadius: 16)
+		return .init(leadingImg: leadingImg,
+					 trailingImg: trailingImg,
+					 topLeadingText: "Title".styled(font: .systemFont(ofSize: 15, weight: .semibold), color: .black),
+					 bottomLeadingText: "SubTitle".styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black),
+					 topTrailingText: "Caption".styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black),
+					 bottomTrailingText: "SubCaption".styled(font: .systemFont(ofSize: 12, weight: .regular), color: .black),
+					 blob: RoundedButtonModel.RoundedButtonBlob(background: .black.opacity(0.05), padding: 15, cornerRadius: 20))
+		
+	}
+}
+
+//MARK: - RoundedButton
+
 struct RoundedButton: View {
 
 	let model: RoundedButtonModel
@@ -109,7 +157,7 @@ struct RoundedButton: View {
 	var mainButton: some View {
 		HStack(alignment: .center, spacing: 10) {
 			if model.leadingImg != nil {
-				ImageView(url: model.leadingImg?.imgUrl, img: model.leadingImg?.img)
+				ImageView(url: model.leadingImg?.imgUrl, image: model.leadingImg?.img)
 					.frame(size: model.leadingImg?.size ?? .regularSize)
 					.clipContent(radius: model.leadingImg?.cornerRadius ?? 0)
 			}
@@ -117,7 +165,7 @@ struct RoundedButton: View {
 			Spacer()
 			trailingStack
 			if model.trailingImg != nil {
-				ImageView(url: model.trailingImg?.imgUrl, img: model.trailingImg?.img)
+				ImageView(url: model.trailingImg?.imgUrl, image: model.trailingImg?.img)
 					.frame(size: model.trailingImg?.size ?? .regularSize)
 					.clipContent(radius: model.trailingImg?.cornerRadius ?? 0)
 			}
@@ -140,6 +188,6 @@ struct RoundedButton: View {
 				}
 		}
 	}
-	
-	
 }
+
+

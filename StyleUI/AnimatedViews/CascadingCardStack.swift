@@ -23,13 +23,13 @@ struct CascadingCard: ViewModifier {
 	let offFactor: CGFloat
 	let pivotFactor: CGFloat
 	
-	init(delta: Int, offFactor: CGFloat = 50, pivotFactor: CGFloat = 10) {
+	init(delta: Int, offFactor: CGFloat = 50, pivotFactor: CGFloat = 20) {
 		self.delta = delta
 		self.offFactor = offFactor
 		self.pivotFactor = pivotFactor
 	}
 	
-	var pivot: Angle { Angle(degrees: delta == 0 ? 0 : pivotFactor * delta.double) }
+	var pivot: Angle { Angle(degrees: delta == 0 ? 0 : pivotFactor * (delta > 0 ? 1 : -1)) }
 	var off: CGFloat { delta.cgFloat * offFactor }
 	var scale: CGFloat { delta == .zero ? 1 : 1 - (0.15 * delta.abs.cgFloat) }
 	
@@ -37,9 +37,9 @@ struct CascadingCard: ViewModifier {
 		content
 			.offset(x: off)
 			.scaleEffect(scale)
-			.rotation3DEffect(-pivot, axis: (x: 0, y: 1, z: 0), anchor: .center, anchorZ: 0.0, perspective: 1)
+			.rotation3DEffect(-pivot, axis: (x: 0, y: 1, z: 0))
 			.zIndex(delta == 0 ? 1 : -delta.abs.double)
-			
+			.opacity(delta == 0 ? 1 : 0.75)
 	}
 }
 
@@ -74,9 +74,7 @@ struct CascadingCardStack<Content: View>: View {
 	func change(_ value: DragGesture.Value) {
 		let xOff = value.translation.width
 		asyncMainAnimation(animation: .easeInOut) {
-			if abs(xOff) <= 20 {
-				self.off = xOff
-			}
+			self.off = xOff
 		}
 	}
 	
@@ -84,7 +82,7 @@ struct CascadingCardStack<Content: View>: View {
 		let xOff = value.translation.width
 		asyncMainAnimation(animation: .easeInOut) {
 			let delta = (xOff > 0 ? -1 : 1)
-			if abs(xOff) >= 25, self.currentIdx + delta >= 0 && self.currentIdx + delta <= self.data.count - 1 {
+			if abs(xOff) >= 100, self.currentIdx + delta >= 0 && self.currentIdx + delta <= self.data.count - 1 {
 				self.currentIdx += delta
 			}
 			self.off = .zero
@@ -100,12 +98,13 @@ struct CascadingCardStack<Content: View>: View {
 				if data.offset >= currentIdx - 3 &&  data.offset <= currentIdx + 3 {
 					viewBuilder(data.element)
 						.cascadingCard(delta: delta, offFactor: offFactor, pivotFactor: pivotFactor)
+						.offset(x: data.offset == currentIdx ? off : 0)
 				}
 			}
 		}
-		.offset(x: off)
 		.gesture(DragGesture().onChanged(change(_:)).onEnded(end(_:)))
 		.frame(width: .totalWidth)
+		
 	}
 }
 

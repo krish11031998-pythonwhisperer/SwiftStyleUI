@@ -23,6 +23,7 @@ struct NavigationModifier: ViewModifier {
 			content
 		} label: {
 			Color.clear
+				.frame(size: .zero)
 		}
 	}
 }
@@ -30,7 +31,7 @@ struct NavigationModifier: ViewModifier {
 extension View {
 	
 	func navigationLink(isActive: Binding<Bool>) -> some View {
-		self.modifier(NavigationModifier(isActive: isActive))
+		modifier(NavigationModifier(isActive: isActive))
 	}
 }
 
@@ -41,19 +42,36 @@ struct NavLink<Content: View>: View {
 	let content: Content
 	let leadingBarItem: AnyView?
 	let trailingBarItem: AnyView?
+	let titleView: AnyView?
 	
-	init(isActive: Binding<Bool>, leadingBarItem: (() -> AnyView)? = nil, trailingBarItem: (() -> AnyView)? = nil, @ViewBuilder _ view: @escaping () -> Content) {
+	init(isActive: Binding<Bool>,
+		 leadingBarItem: (() -> AnyView)? = nil,
+		 trailingBarItem: (() -> AnyView)? = nil,
+		 titleView: (() -> AnyView)? = nil,
+		 @ViewBuilder _ view: @escaping () -> Content)
+	{
 		self._isActive = isActive
 		self.content = view()
 		self.leadingBarItem = leadingBarItem?()
 		self.trailingBarItem = trailingBarItem?()
+		self.titleView = titleView?()
+	}
+	
+	var mainBody: some View {
+		content
+			.navigationBarItems(leading: leadingBarItem ?? defaultBackButton, trailing: trailingBarItem)
+			.navigationBarBackButtonHidden(true)
+			.navigationBarTitleDisplayMode(.inline)
 	}
 	
 	var body: some View {
 		NavigationLink(isActive: $isActive) {
-			content
-				.navigationBarItems(leading: leadingBarItem ?? defaultBackButton, trailing: trailingBarItem)
-				.navigationBarBackButtonHidden(true)
+			if let customTitleView = titleView {
+				mainBody
+					.toolbar { ToolbarItem(placement: .principal) { customTitleView } }
+			} else {
+				mainBody
+			}
 		} label: {
 			Color.clear.frame(size: .zero)
 		}

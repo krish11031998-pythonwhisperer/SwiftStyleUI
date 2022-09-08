@@ -25,8 +25,8 @@ struct ImageComponents: View  {
 
 			}
 		}
-		.navigationTitle("Image Components")
-		.navigationBarTitleDisplayMode(.inline)
+//		.navigationTitle("Image Components")
+//		.navigationBarTitleDisplayMode(.inline)
 	}
 }
 

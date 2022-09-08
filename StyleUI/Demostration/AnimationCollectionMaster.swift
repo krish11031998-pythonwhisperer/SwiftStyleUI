@@ -26,11 +26,11 @@ struct AnimationCollectionMaster: View {
 	
 	var body: some View {
 		ScrollView(.vertical, showsIndicators: false) {
-			LazyVStack(alignment: .center, spacing: 10) {
+			VStack(alignment: .center, spacing: 10) {
 				
 				SlideOverCarousel(data:[Color.red, Color.blue, Color.brown, Color.mint]) { color in
 					VStack(alignment: .leading, spacing: 15) {
-						RoundedButton(model: RoundedButtonComponents.testModelLeading)
+						RoundedButton(model: .testModelLeading)
 							.fixedHeight(height: 50)
 						"This is a test text , a alternative to the boring Lorem ipsum text"
 							.styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black)
@@ -85,6 +85,5 @@ struct AnimationCollectionMaster: View {
 			}
 		}
 		.navigationTitle("Animatable Collections")
-		.navigationBarTitleDisplayMode(.inline)
 	}
 }

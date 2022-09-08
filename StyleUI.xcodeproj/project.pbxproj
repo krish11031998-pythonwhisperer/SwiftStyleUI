@@ -33,6 +33,10 @@
 		EFC9B77228C8CBF1000A6452 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77128C8CBF1000A6452 /* RoundedButton.swift */; };
 		EFC9B77528C8DB77000A6452 /* ImagesComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77428C8DB77000A6452 /* ImagesComponents.swift */; };
 		EFC9B77728C8DCED000A6452 /* RoundedButtonComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77628C8DCED000A6452 /* RoundedButtonComponents.swift */; };
+		EFC9B77928C9171D000A6452 /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77828C9171D000A6452 /* CustomNavBar.swift */; };
+		EFC9B77B28C99D75000A6452 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77A28C99D75000A6452 /* EdgeInsets.swift */; };
+		EFC9B77D28C9A016000A6452 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */; };
+		EFC9B78028C9B9A2000A6452 /* CustomNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +86,10 @@
 		EFC9B77128C8CBF1000A6452 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		EFC9B77428C8DB77000A6452 /* ImagesComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesComponents.swift; sourceTree = "<group>"; };
 		EFC9B77628C8DCED000A6452 /* RoundedButtonComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonComponents.swift; sourceTree = "<group>"; };
+		EFC9B77828C9171D000A6452 /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
+		EFC9B77A28C99D75000A6452 /* EdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
+		EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +185,6 @@
 				EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */,
 				EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */,
 				EF8D057128C77641000076E5 /* SlideCardView.swift */,
-				EF8D057628C866DD000076E5 /* AnimationCollectionMaster.swift */,
 			);
 			path = AnimatedViews;
 			sourceTree = "<group>";
@@ -191,6 +198,8 @@
 				EF8D056F28C73C66000076E5 /* Array.swift */,
 				EF8D057428C77854000076E5 /* CGSize.swift */,
 				EFC9B76D28C8B25E000A6452 /* ViewStyling.swift */,
+				EFC9B77A28C99D75000A6452 /* EdgeInsets.swift */,
+				EFC9B77C28C9A016000A6452 /* GlobalFunctions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -198,6 +207,7 @@
 		EF8D057E28C880DE000076E5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				EFC9B77E28C9B94B000A6452 /* CustomNavigation */,
 				EF8D057F28C880F1000076E5 /* ImageView.swift */,
 				EF8D057828C86917000076E5 /* Navigation.swift */,
 				EF8D057A28C8730E000076E5 /* Button.swift */,
@@ -210,10 +220,20 @@
 		EFC9B77328C8DB69000A6452 /* Demostration */ = {
 			isa = PBXGroup;
 			children = (
+				EF8D057628C866DD000076E5 /* AnimationCollectionMaster.swift */,
 				EFC9B77428C8DB77000A6452 /* ImagesComponents.swift */,
 				EFC9B77628C8DCED000A6452 /* RoundedButtonComponents.swift */,
 			);
 			path = Demostration;
+			sourceTree = "<group>";
+		};
+		EFC9B77E28C9B94B000A6452 /* CustomNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				EFC9B77828C9171D000A6452 /* CustomNavBar.swift */,
+				EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */,
+			);
+			path = CustomNavigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,6 +368,7 @@
 			files = (
 				EF8D056C28C7043D000076E5 /* CascadingCardStack.swift in Sources */,
 				EF8D057028C73C66000076E5 /* Array.swift in Sources */,
+				EFC9B77D28C9A016000A6452 /* GlobalFunctions.swift in Sources */,
 				EF8D056428C6728B000076E5 /* CGFloat.swift in Sources */,
 				EFC9B77228C8CBF1000A6452 /* RoundedButton.swift in Sources */,
 				EFC9B77728C8DCED000A6452 /* RoundedButtonComponents.swift in Sources */,
@@ -362,6 +383,9 @@
 				EF8D057928C86917000076E5 /* Navigation.swift in Sources */,
 				EFC9B76E28C8B25E000A6452 /* ViewStyling.swift in Sources */,
 				EF8D057B28C8730E000076E5 /* Button.swift in Sources */,
+				EFC9B78028C9B9A2000A6452 /* CustomNavView.swift in Sources */,
+				EFC9B77928C9171D000A6452 /* CustomNavBar.swift in Sources */,
+				EFC9B77B28C99D75000A6452 /* EdgeInsets.swift in Sources */,
 				EF8D056A28C6FF0B000076E5 /* String.swift in Sources */,
 				EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */,
 				EFC9B77528C8DB77000A6452 /* ImagesComponents.swift in Sources */,
@@ -533,6 +557,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,6 +587,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

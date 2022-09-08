@@ -69,8 +69,6 @@ struct CustomButton: View {
 			}
 		}
 		.buttonStyle(CustomButtonStyle())
-
-		
 	}
 }
 

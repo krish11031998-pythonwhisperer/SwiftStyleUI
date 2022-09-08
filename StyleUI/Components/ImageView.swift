@@ -7,89 +7,109 @@
 
 import SwiftUI
 
+//MARK: - ImageLoadError
+
 enum ImageLoadError: String, Error {
 	case invalidURL = "Invalid Url"
 	case unknown = "Unknown Error"
 	case imageDownlodFail = "(FAIL) Image was not downloaded"
 }
 
+typealias UIImageResult = (Result<UIImage,ImageLoadError>) -> Void
+
+//MARK: - UIImage Extension
+
 extension UIImage {
 	
 	static var cache: NSCache<NSString,UIImage> = { .init() }()
 	
+	static var callBacks: [String: [UIImageResult]] = [:]
+	
+	static func updateCallBacks(url: String, _ result: Result<UIImage, ImageLoadError>) {
+		Self.callBacks[url]?.forEach { $0(result) }
+		Self.callBacks[url] = nil
+	}
+	
 	static var testImage: String { "https://weathereport.mypinata.cloud/ipfs/QmZJ56QmQpXQJamofJJYbR5T1gQTxVMhN5uHYfhvAmdFr8/85.png" }
-}
-
-class ImageDownloader: ObservableObject {
 	
-	@Published var image: UIImage? = nil
-	
-	func loadImage(url: String) {
-		if let validImage = UIImage.cache.object(forKey: url as NSString) {
-			DispatchQueue.main.async {
-				self.image = validImage
-			}
+	static func loadImage(url urlString: String, completion: @escaping UIImageResult) {
+		
+		if Self.callBacks[urlString] == nil {
+			Self.callBacks[urlString] = [completion]
 		} else {
-			guard let validURL = URL(string: url) else {
-				print("(Error) URL is not valid")
-				print(ImageLoadError.invalidURL.rawValue)
+			Self.callBacks[urlString]?.append(completion)
+		}
+		
+		if let validImage = Self.cache.object(forKey: urlString as NSString) {
+			Self.updateCallBacks(url: urlString, .success(validImage))
+		} else {
+			guard let url = URL(string: urlString) else {
+				completion(.failure(.invalidURL))
 				return
 			}
-			
-			URLSession.shared.dataTask(with: validURL) { data, _, err in
-				guard let validData = data, let img = UIImage(data: validData) else {
-					if let validErr = err {
-						print("(ERROR) err : ",validErr)
-					}
-					print(ImageLoadError.imageDownlodFail.rawValue)
+		
+			URLSession.shared.dataTask(with: url) { data, resp, err in
+				guard let validData = data else {
+					Self.updateCallBacks(url: urlString, .failure(.imageDownlodFail))
 					return
 				}
 				
-				UIImage.cache.setObject(img, forKey: url as NSString)
-				DispatchQueue.main.async {
-					self.image = img
+				guard let validImage =  UIImage(data: validData) else {
+					Self.updateCallBacks(url: urlString, .failure(.unknown))
+					return
 				}
-
+				
+				Self.updateCallBacks(url: urlString, .success(validImage))
+				
 			}.resume()
 		}
 	}
-	
 }
 
-struct ImageView: View {
-	
-	let url: String?
-	let img: UIImage?
-	@StateObject var IMD: ImageDownloader = .init()
-	
-	init(url: String? = nil, img: UIImage? = nil) {
-		self.url = url
-		self.img = img
-	}
-	
-	private var image: UIImage? {
-		IMD.image ?? img
-	}
-	
-	private func onAppear() {
-		guard let validURL = url else { return }
-		IMD.loadImage(url: validURL)
-	}
 
-    var body: some View {
+//MARK: - ImageView - Component
+
+struct ImageView: View {
+	@State var image: UIImage? = nil
+	let url: String?
+	
+	init(url: String? = nil, image: UIImage? = nil) {
+		self.url = url
+		self._image = .init(initialValue: image)
+	}
+	
+	private func loadImage() {
+		guard let validUrl = url else { return }
+		UIImage.loadImage(url: validUrl) { result in
+			switch result {
+			case .success(let img):
+				DispatchQueue.main.async {
+					withAnimation(.easeInOut) {
+						self.image = img
+					}
+				}
+			case .failure(let err):
+				print("(Error) Err :",err.localizedDescription)
+			}
+		}
+		
+	}
+	
+	var body: some View {
 		ZStack(alignment: .center) {
-			Color.gray.opacity(0.25)
+			Color.gray.opacity(0.15)
 			if let validImage = image {
 				Image(uiImage: validImage)
 					.resizable()
 					.scaledToFill()
+					.clipped()
 			}
 		}
-		.onAppear(perform: onAppear)
-    }
+		.onAppear(perform: loadImage)
+	}
 }
 
-extension ImageView {
+extension View {
 	
 	func framed(size: CGSize, cornerRadius: CGFloat = 8, alignment: Alignment = .center) -> some View {
 		self.frame(size: size, alignment: alignment)
@@ -97,10 +117,12 @@ extension ImageView {
 	}
 }
 
+//MARK: - Preview
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView(url: "")
+		ImageView(url: UIImage.testImage)
 			.frame(size: .init(width: 200, height: 200))
 			.clipShape(RoundedRectangle(cornerRadius: 20))
+			.previewDevice("iPhone 12")
     }
 }
