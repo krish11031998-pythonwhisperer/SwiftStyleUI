@@ -49,11 +49,6 @@ struct DiscoveryCardZoomModifier: ViewModifier {
 		let scaleY = 1 - 0.25 * ((0...CGFloat.totalHeight.half).normalize(abs(abs(midY) - .totalHeight.half)).boundedTo(lower: 0, higher: 1))
 		
 		content
-			.overlay {
-				VStack(alignment: .center) {
-					"\([scaleX, scaleY].average)".styled(font: .systemFont(ofSize: 15, weight: .medium), color: .white).text
-				}.frame(maxWidth: .infinity, maxHeight: .infinity)
-			}
 			.scaleEffect([scaleX, scaleY].average)
 		
 	}

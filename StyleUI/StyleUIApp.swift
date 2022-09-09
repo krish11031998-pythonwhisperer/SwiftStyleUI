@@ -12,6 +12,7 @@ class MainAppStates: ObservableObject {
 	@Published var imageView: Bool = false
 	@Published var roundedButton: Bool = false
 	@Published var navBar: Bool = false
+	@Published var animations: Bool = false
 }
 
 @main

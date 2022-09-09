@@ -83,10 +83,8 @@ public struct ImageView: View {
 		UIImage.loadImage(url: validUrl) { result in
 			switch result {
 			case .success(let img):
-				DispatchQueue.main.async {
-					withAnimation(.easeInOut) {
-						self.image = img
-					}
+				asyncMainAnimation(animation: .default) {
+					self.image = img
 				}
 			case .failure(let err):
 				print("(Error) Err :",err.localizedDescription)
@@ -97,7 +95,8 @@ public struct ImageView: View {
 	
 	public var body: some View {
 		ZStack(alignment: .center) {
-			Color.gray.opacity(0.15)
+			Color.gray
+				.opacity(image != nil ? 0 : 0.15)
 			if let validImage = image {
 				Image(uiImage: validImage)
 					.resizable()

@@ -31,15 +31,23 @@ public struct CustomButtonConfig {
 	let imageName: Image.Catalogue
 	let text: String?
 	let size: CGSize
+	let padding: CGFloat
 	let foregroundColor: Color
 	let backgroundColor: Color
 	
-	init(imageName: Image.Catalogue, text: String? = nil, size: CGSize = .init(squared: 10), foregroundColor: Color = .white, backgroundColor: Color = .black) {
+	init(imageName: Image.Catalogue,
+		 text: String? = nil,
+		 size: CGSize = .init(squared: 10),
+		 padding: CGFloat = 10,
+		 foregroundColor: Color = .white,
+		 backgroundColor: Color = .black)
+	{
 		self.imageName = imageName
 		self.text = text
 		self.size = size
 		self.foregroundColor = foregroundColor
 		self.backgroundColor = backgroundColor
+		self.padding = padding
 	}
 }
 
@@ -60,7 +68,7 @@ public struct CustomButton: View {
 				.scaledToFit()
 				.foregroundColor(config.foregroundColor)
 				.frame(size: config.size)
-				.padding(10)
+				.padding(config.padding)
 				.background(config.backgroundColor)
 				.clipShape(Circle())
 			if let validText = config.text {

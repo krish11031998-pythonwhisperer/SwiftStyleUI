@@ -78,12 +78,11 @@ fileprivate struct SlideInFromBottom<Modal: View>: ViewModifier {
 
 public extension View {
 	
-	func slideInFromBottomModal<Modal:View>(showModal: Binding<Bool>, modalConfig: ModalConfig = .defaultConfig,
+	func slideInFromBottomModal<Modal:View>(showModal: Binding<Bool>,
+											modalConfig: ModalConfig = .defaultConfig,
 											@ViewBuilder modal: @escaping () -> Modal) -> some View
 	{
-		modifier(SlideInFromBottom(showModal: showModal, modalConfig: modalConfig, modal: {
-			modal()
-		}))
+		modifier(SlideInFromBottom(showModal: showModal, modalConfig: modalConfig, modal: modal))
 	}
 }
 

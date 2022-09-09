@@ -114,7 +114,7 @@ extension RoundedButtonModel {
 					 bottomLeadingText: "SubTitle".styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black),
 					 topTrailingText: "Caption".styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black),
 					 bottomTrailingText: "SubCaption".styled(font: .systemFont(ofSize: 12, weight: .regular), color: .black),
-					 blob: RoundedButtonModel.RoundedButtonBlob(background: .black.opacity(0.05), padding: 15, cornerRadius: 20))
+					 blob: RoundedButtonModel.RoundedButtonBlob(background: .black.opacity(0.05), padding: 20, cornerRadius: 20))
 		
 	}
 }
@@ -182,12 +182,14 @@ public struct RoundedButton: View {
 				.buttonify {
 					action?()
 				}
+				.fixedSize(horizontal: false, vertical: true)
 		} else {
 			mainButton
 				.contentShape(Rectangle())
 				.buttonify {
 					action?()
 				}
+				.fixedSize(horizontal: false, vertical: true)
 		}
 	}
 }

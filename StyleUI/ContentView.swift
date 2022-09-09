@@ -48,6 +48,12 @@ struct ContentView: View {
 					.buttonify {
 						self.appStates.navBar.toggle()
 					}
+
+				HeaderSubHeadView(title: "Animation", subTitle: "All Animations")
+					.buttonify {
+						self.appStates.animations.toggle()
+					}
+
 				
 			}.padding()
 				.frame(maxWidth: .infinity, alignment: .leading)
@@ -57,6 +63,7 @@ struct ContentView: View {
 			imageNavLink
 			roundedButtonLink
 			customNavBarLink
+			animationsNavLink
 		}
 		.navigationBarHidden(true)
 		.customNavbarAppearance(navbarAppearance: navBarAppearance)
@@ -142,7 +149,12 @@ extension ContentView {
 			}
 
 		}
-		
+	}
+	
+	var animationsNavLink: some View {
+		NavLink(isActive: $appStates.animations) {
+			AnimationsMaster()
+		}
 	}
 }
 

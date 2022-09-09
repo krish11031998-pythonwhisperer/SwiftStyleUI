@@ -12,6 +12,17 @@ struct AnimationCollectionMaster: View {
 	let colors : [Color] = [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue]
 	
 	@State var showDiscoveryView: Bool = false
+	@State var showStackedScroll: Bool = false
+	@State var loadData: Bool = false
+	@State var data: [Any] = [] {
+		didSet {
+			if !data.isEmpty {
+				withAnimation(.default) {
+					showDiscoveryView.toggle()
+				}
+			}
+		}
+	}
 	
 	func headerBuilder(title: String, subTitle: String? = nil) -> AnyView {
 		HStack(alignment: .center, spacing: 10) {
@@ -37,6 +48,19 @@ struct AnimationCollectionMaster: View {
 	
 	static var discoveryModel: DiscoveryViewModel {
 		.init(cardSize: .init(width: 250, height: 350), rows: 5, spacing:25, bgColor: .black)
+	}
+	
+	private func loadImages(_ val: Bool) {
+		RandomImagesEndpoint.list(page: Int.random(in: 0...5), limit: 25).execute { (result: Result<[RandomImage],Error>) in
+			switch result {
+			case .success(let images):
+				asyncMainAnimation {
+					self.data = images
+				}
+			case .failure(let err):
+				print("(DEBUG) Err : ",err.localizedDescription)
+			}
+		}
 	}
 	
 	var body: some View {
@@ -90,23 +114,57 @@ struct AnimationCollectionMaster: View {
 						}
 				}.containerize(header: headerBuilder(title: "Slide Card View"))
 				
-				RoundedButton(model: .init(topLeadingText: "Discovery View".styled(font: .systemFont(ofSize: 18, weight: .bold), color: .black),
-										   bottomLeadingText: "Experience it!".styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black),
+				RoundedButton(model: .init(topLeadingText: "Discovery View".styled(font: .systemFont(ofSize: 15, weight: .bold), color: .black),
+										   bottomLeadingText: "Experience it!".styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black),
 										   blob: .init(background: .gray.opacity(0.14),
-										   padding: 10,
+										   padding: 20,
 										   cornerRadius: 20))) {
-					showDiscoveryView.toggle()
+					loadData.toggle()
+				}.padding()
+				RoundedButton(model: .init(topLeadingText: "StackScroll View".styled(font: .systemFont(ofSize: 15, weight: .bold), color: .black),
+										   bottomLeadingText: "Experience it!".styled(font: .systemFont(ofSize: 13, weight: .medium), color: .black),
+										   blob: .init(background: .gray.opacity(0.14),
+										   padding: 20,
+										   cornerRadius: 20))) {
+					showStackedScroll.toggle()
 				}.padding()
 			
 			}
 		}
 		.navigationTitle("Animatable Collections")
 		.fullScreenModal(isActive: $showDiscoveryView, innerContent: {
-			DiscoveryView(data: Self.colors, model: Self.discoveryModel) { color in
-				RoundedRectangle(cornerRadius: 20)
-					.fill((color as? Color) ?? .brown)
-					.frame(size: .init(width: 250, height: 350))
+			DiscoveryView(data: data, model: Self.discoveryModel) { data in
+				if let imgData = data as? RandomImage {
+					ImageView(url: imgData.optimizedImage(size: .init(width: 250, height: 350)))
+						.framed(size: .init(width: 250, height: 350), cornerRadius: 20, alignment: .center)
+				} else {
+					RoundedRectangle(cornerRadius: 20)
+						.fill(.brown)
+						.frame(size: .init(width: 250, height: 350))
+				}
+				
 			}
 		})
+		.fullScreenModal(isActive: $showStackedScroll, config: .init(isDraggable: true, showCloseIndicator: true)) {
+			StackedScroll(data: [Color.red, Color.blue, Color.green]) { data in
+				VStack(alignment: .leading, spacing: 20) {
+					RoundedButton(model: .testModel)
+						.fixedSize(horizontal: false, vertical: true)
+						.clipped()
+					RoundedButton(model: .testModelLeading)
+						.fixedSize(horizontal: false, vertical: true)
+						.clipped()
+					RoundedButton(model: .testModelTrailing)
+						.fixedSize(horizontal: false, vertical: true)
+						.clipped()
+					RoundedButton(model: .testModelWithBlob)
+						.fixedSize(horizontal: false, vertical: true)
+				}
+				.padding(.init(top: .safeAreaInsets.top + 50, leading: 20, bottom: .safeAreaInsets.bottom, trailing: 20))
+				.frame(width: .totalWidth, height: .totalHeight, alignment: .topLeading)
+				.background((data as? Color) ?? .black)
+			}
+		}
+		.onChange(of: loadData, perform: loadImages(_:))
 	}
 }

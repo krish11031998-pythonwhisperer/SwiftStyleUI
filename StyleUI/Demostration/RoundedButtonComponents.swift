@@ -19,7 +19,7 @@ struct RoundedButtonComponents: View {
 					.text
 				Spacer()
 				if !showFullScreen {
-					CustomButton(config: .init(imageName: .close, size: .init(squared: 10), foregroundColor: .blue, backgroundColor: .black)) {
+					CustomButton(config: .init(imageName: .close)) {
 						if showModal { showModal = false }
 						if showFullScreen { showFullScreen = false }
 					}
@@ -27,12 +27,6 @@ struct RoundedButtonComponents: View {
 			}
 			.fillWidth(alignment: .leading)
 			"This is a simple text that is being displayed, This is a simple text that is being displayed".text
-			RoundedButton(model: .init(blob: .init(background: .red, padding: 10, cornerRadius: 10), handler: {
-				if showModal { showModal = false }
-				if showFullScreen { showFullScreen = false }
-			}))
-			.frame(height: 50, alignment: .topLeading)
-			.padding(.top,10)
 		}.padding()
 	}
 	

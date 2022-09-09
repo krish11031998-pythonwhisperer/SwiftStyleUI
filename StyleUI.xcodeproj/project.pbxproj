@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF40707828CB48DD00EA7A63 /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40707728CB48DD00EA7A63 /* ShakeEffect.swift */; };
+		EF40707A28CB560500EA7A63 /* AnimationsMaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40707928CB560500EA7A63 /* AnimationsMaster.swift */; };
+		EF40707C28CB5C2C00EA7A63 /* AnimatableProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40707B28CB5C2C00EA7A63 /* AnimatableProgressBar.swift */; };
+		EF40707F28CB6FD000EA7A63 /* ArcShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40707E28CB6FD000EA7A63 /* ArcShape.swift */; };
+		EF40708428CB7CA700EA7A63 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40708328CB7CA700EA7A63 /* NetworkRequest.swift */; };
+		EF40708728CB800500EA7A63 /* RandomImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40708628CB800500EA7A63 /* RandomImages.swift */; };
+		EF40708928CB822F00EA7A63 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF40708828CB822F00EA7A63 /* EndPoints.swift */; };
 		EF8D053628C670AA000076E5 /* StyleUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D053528C670AA000076E5 /* StyleUIApp.swift */; };
 		EF8D053828C670AA000076E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF8D053728C670AA000076E5 /* ContentView.swift */; };
 		EF8D053A28C670AA000076E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF8D053928C670AA000076E5 /* Assets.xcassets */; };
@@ -40,6 +47,7 @@
 		EFC9B78728CA1E6A000A6452 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78628CA1E6A000A6452 /* Int.swift */; };
 		EFC9B78928CA68C8000A6452 /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */; };
 		EFC9B78B28CB23B8000A6452 /* FullScreenModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78A28CB23B8000A6452 /* FullScreenModal.swift */; };
+		EFC9B78D28CB340C000A6452 /* StackedScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78C28CB340C000A6452 /* StackedScroll.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +68,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF40707728CB48DD00EA7A63 /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
+		EF40707928CB560500EA7A63 /* AnimationsMaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationsMaster.swift; sourceTree = "<group>"; };
+		EF40707B28CB5C2C00EA7A63 /* AnimatableProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableProgressBar.swift; sourceTree = "<group>"; };
+		EF40707E28CB6FD000EA7A63 /* ArcShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcShape.swift; sourceTree = "<group>"; };
+		EF40708328CB7CA700EA7A63 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		EF40708628CB800500EA7A63 /* RandomImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImages.swift; sourceTree = "<group>"; };
+		EF40708828CB822F00EA7A63 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
 		EF8D053228C670AA000076E5 /* StyleUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StyleUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8D053528C670AA000076E5 /* StyleUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleUIApp.swift; sourceTree = "<group>"; };
 		EF8D053728C670AA000076E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +111,7 @@
 		EFC9B78628CA1E6A000A6452 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
 		EFC9B78A28CB23B8000A6452 /* FullScreenModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenModal.swift; sourceTree = "<group>"; };
+		EFC9B78C28CB340C000A6452 /* StackedScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedScroll.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +139,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF40707628CB48CD00EA7A63 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				EF40707728CB48DD00EA7A63 /* ShakeEffect.swift */,
+				EF40707B28CB5C2C00EA7A63 /* AnimatableProgressBar.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		EF40707D28CB6FC500EA7A63 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				EF40707E28CB6FD000EA7A63 /* ArcShape.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		EF40708228CB7C9300EA7A63 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				EF40708828CB822F00EA7A63 /* EndPoints.swift */,
+				EF40708328CB7CA700EA7A63 /* NetworkRequest.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		EF40708528CB7FF600EA7A63 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF40708628CB800500EA7A63 /* RandomImages.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EF8D052928C670AA000076E5 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +196,10 @@
 		EF8D053428C670AA000076E5 /* StyleUI */ = {
 			isa = PBXGroup;
 			children = (
+				EF40708528CB7FF600EA7A63 /* Models */,
+				EF40708228CB7C9300EA7A63 /* Network */,
+				EF40707D28CB6FC500EA7A63 /* Shapes */,
+				EF40707628CB48CD00EA7A63 /* Animations */,
 				EFC9B77328C8DB69000A6452 /* Demostration */,
 				EF8D057E28C880DE000076E5 /* Components */,
 				EF8D056228C6727D000076E5 /* Extension */,
@@ -191,6 +245,7 @@
 				EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */,
 				EF8D057128C77641000076E5 /* SlideCardView.swift */,
 				EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */,
+				EFC9B78C28CB340C000A6452 /* StackedScroll.swift */,
 			);
 			path = AnimatedViews;
 			sourceTree = "<group>";
@@ -231,6 +286,7 @@
 				EF8D057628C866DD000076E5 /* AnimationCollectionMaster.swift */,
 				EFC9B77428C8DB77000A6452 /* ImagesComponents.swift */,
 				EFC9B77628C8DCED000A6452 /* RoundedButtonComponents.swift */,
+				EF40707928CB560500EA7A63 /* AnimationsMaster.swift */,
 			);
 			path = Demostration;
 			sourceTree = "<group>";
@@ -388,15 +444,20 @@
 				EFC9B77D28C9A016000A6452 /* GlobalFunctions.swift in Sources */,
 				EF8D056428C6728B000076E5 /* CGFloat.swift in Sources */,
 				EFC9B77228C8CBF1000A6452 /* RoundedButton.swift in Sources */,
+				EFC9B78D28CB340C000A6452 /* StackedScroll.swift in Sources */,
 				EFC9B77728C8DCED000A6452 /* RoundedButtonComponents.swift in Sources */,
 				EFC9B78728CA1E6A000A6452 /* Int.swift in Sources */,
 				EF8D053828C670AA000076E5 /* ContentView.swift in Sources */,
 				EFC9B77028C8B5FC000A6452 /* Text.swift in Sources */,
+				EF40708928CB822F00EA7A63 /* EndPoints.swift in Sources */,
 				EF8D057228C77641000076E5 /* SlideCardView.swift in Sources */,
 				EF8D057528C77854000076E5 /* CGSize.swift in Sources */,
 				EF8D056828C6FDA9000076E5 /* CommonComponents.swift in Sources */,
 				EF8D056628C6743B000076E5 /* View.swift in Sources */,
+				EF40708728CB800500EA7A63 /* RandomImages.swift in Sources */,
+				EF40707C28CB5C2C00EA7A63 /* AnimatableProgressBar.swift in Sources */,
 				EF8D058028C880F1000076E5 /* ImageView.swift in Sources */,
+				EF40708428CB7CA700EA7A63 /* NetworkRequest.swift in Sources */,
 				EF8D057728C866DD000076E5 /* AnimationCollectionMaster.swift in Sources */,
 				EF8D057928C86917000076E5 /* Navigation.swift in Sources */,
 				EFC9B76E28C8B25E000A6452 /* ViewStyling.swift in Sources */,
@@ -404,7 +465,10 @@
 				EFC9B78028C9B9A2000A6452 /* CustomNavView.swift in Sources */,
 				EFC9B77928C9171D000A6452 /* CustomNavBar.swift in Sources */,
 				EFC9B77B28C99D75000A6452 /* EdgeInsets.swift in Sources */,
+				EF40707A28CB560500EA7A63 /* AnimationsMaster.swift in Sources */,
 				EFC9B78528C9E8E5000A6452 /* BottomModal.swift in Sources */,
+				EF40707F28CB6FD000EA7A63 /* ArcShape.swift in Sources */,
+				EF40707828CB48DD00EA7A63 /* ShakeEffect.swift in Sources */,
 				EF8D056A28C6FF0B000076E5 /* String.swift in Sources */,
 				EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */,
 				EFC9B77528C8DB77000A6452 /* ImagesComponents.swift in Sources */,
