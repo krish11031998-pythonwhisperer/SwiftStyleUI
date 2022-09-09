@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+//MARK: - CGFloat Extension
+
 public extension CGFloat {
 	static var totalWidth: CGFloat { UIScreen.main.bounds.width }
 	static var totalHeight: CGFloat { UIScreen.main.bounds.height }
@@ -40,6 +42,8 @@ public extension CGFloat {
 	}
 }
 
+//MARK: - ClosedRange
+
 public extension ClosedRange where Bound == CGFloat {
 	
 	func normalize(_ val: CGFloat) -> CGFloat {
@@ -47,5 +51,14 @@ public extension ClosedRange where Bound == CGFloat {
 		let min = lowerBound
 		
 		return (val - min)/(max - min)
+	}
+}
+
+//MARK: - Array
+
+public extension Array where Element == CGFloat {
+	
+	var average: Self.Element {
+		reduce(0, +)/CGFloat(count)
 	}
 }
