@@ -39,6 +39,7 @@
 		EFC9B78528C9E8E5000A6452 /* BottomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78428C9E8E5000A6452 /* BottomModal.swift */; };
 		EFC9B78728CA1E6A000A6452 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78628CA1E6A000A6452 /* Int.swift */; };
 		EFC9B78928CA68C8000A6452 /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */; };
+		EFC9B78B28CB23B8000A6452 /* FullScreenModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78A28CB23B8000A6452 /* FullScreenModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		EFC9B78428C9E8E5000A6452 /* BottomModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomModal.swift; sourceTree = "<group>"; };
 		EFC9B78628CA1E6A000A6452 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
+		EFC9B78A28CB23B8000A6452 /* FullScreenModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				EFC9B78428C9E8E5000A6452 /* BottomModal.swift */,
+				EFC9B78A28CB23B8000A6452 /* FullScreenModal.swift */,
 			);
 			path = PresentationViews;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFC9B78B28CB23B8000A6452 /* FullScreenModal.swift in Sources */,
 				EF8D056C28C7043D000076E5 /* CascadingCardStack.swift in Sources */,
 				EFC9B77D28C9A016000A6452 /* GlobalFunctions.swift in Sources */,
 				EF8D056428C6728B000076E5 /* CGFloat.swift in Sources */,

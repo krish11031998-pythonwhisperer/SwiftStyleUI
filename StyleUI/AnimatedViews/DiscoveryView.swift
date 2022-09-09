@@ -53,7 +53,6 @@ struct DiscoveryCardZoomModifier: ViewModifier {
 				VStack(alignment: .center) {
 					"\([scaleX, scaleY].average)".styled(font: .systemFont(ofSize: 15, weight: .medium), color: .white).text
 				}.frame(maxWidth: .infinity, maxHeight: .infinity)
-					.background(Color.gray.opacity(0.15))
 			}
 			.scaleEffect([scaleX, scaleY].average)
 		
@@ -82,7 +81,7 @@ struct DiscoveryViewModel {
 	let cardSize: CGSize
 	let rows: Int
 	let spacing: CGFloat
-	
+	let bgColor: Color
 }
 
 struct DiscoveryView<Content: View>: View {
@@ -109,7 +108,6 @@ struct DiscoveryView<Content: View>: View {
 			ForEach(Array(data.enumerated()), id: \.offset) { data in
 				viewBuilder(data.element)
 					.discoveryCardZoom(size: model.cardSize)
-					//.frame(size: model.cardSize)
 			}
 		}
 	}
@@ -168,13 +166,19 @@ struct DiscoveryView<Content: View>: View {
 	}
 	
 	var body: some View {
-		GeometryReader { g in
-			innerView(g: g)
+		ZStack(alignment: .top) {
+			model.bgColor
+			GeometryReader { g in
+				innerView(g: g)
+			}
+			.offset(x: static_xOff + dy_xOff, y: static_yOff + dy_yOff)
+			.gesture(dragGesture)
+			.frame(width: width, height: height, alignment: .topLeading)
 		}
-		.frame(width: width, height: height, alignment: .topLeading)
+		.frame(size: .init(width: .totalWidth, height: .totalHeight))
+		.clipped()
 		.edgesIgnoringSafeArea(.all)
-		.offset(x: static_xOff + dy_xOff, y: static_yOff + dy_yOff)
-		.gesture(dragGesture)
+		
 	}
 	
 }
@@ -191,7 +195,7 @@ struct DiscoveryView_Preview: PreviewProvider {
 	}
 	
 	static var discoveryModel: DiscoveryViewModel {
-		.init(cardSize: .init(squared: 200), rows: 4, spacing: 50)
+		.init(cardSize: .init(squared: 200), rows: 4, spacing: 50, bgColor: .black)
 	}
 	
 	static var previews: some View {

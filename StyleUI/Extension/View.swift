@@ -23,6 +23,18 @@ public extension View {
 	}
 	
 	var anyView: AnyView { .init(self) }
+	
+	func fillFrame(alignment: Alignment = .center) -> some View {
+		frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
+	}
+	
+	func fillWidth(alignment: Alignment = .center) -> some View {
+		frame(maxWidth: .infinity, alignment: alignment)
+	}
+	
+	func fillHeight(alignment: Alignment = .center) -> some View {
+		frame(maxHeight: .infinity, alignment: alignment)
+	}
 }
 
 //MARK: - Clipping Content

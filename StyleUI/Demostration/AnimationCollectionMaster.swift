@@ -36,7 +36,7 @@ struct AnimationCollectionMaster: View {
 	}
 	
 	static var discoveryModel: DiscoveryViewModel {
-		.init(cardSize: .init(width: 250, height: 350), rows: 5, spacing:25)
+		.init(cardSize: .init(width: 250, height: 350), rows: 5, spacing:25, bgColor: .black)
 	}
 	
 	var body: some View {
@@ -90,24 +90,23 @@ struct AnimationCollectionMaster: View {
 						}
 				}.containerize(header: headerBuilder(title: "Slide Card View"))
 				
-				RoundedButton(model: .init(topLeadingText: "Discovery View", bottomLeadingText: "Experience it!", blob: .init(background: .gray.opacity(0.14), padding: 10, cornerRadius: 20))) {
+				RoundedButton(model: .init(topLeadingText: "Discovery View".styled(font: .systemFont(ofSize: 18, weight: .bold), color: .black),
+										   bottomLeadingText: "Experience it!".styled(font: .systemFont(ofSize: 14, weight: .medium), color: .black),
+										   blob: .init(background: .gray.opacity(0.14),
+										   padding: 10,
+										   cornerRadius: 20))) {
 					showDiscoveryView.toggle()
 				}.padding()
 			
 			}
 		}
 		.navigationTitle("Animatable Collections")
-		.fullScreenCover(isPresented: $showDiscoveryView) {
-			ZStack(alignment: .center) {
-				Color.black
-				DiscoveryView(data: Self.colors, model: Self.discoveryModel) { color in
-					RoundedRectangle(cornerRadius: 20)
-						.fill((color as? Color) ?? .brown)
-						.frame(size: .init(width: 250, height: 350))
-				}
+		.fullScreenModal(isActive: $showDiscoveryView, innerContent: {
+			DiscoveryView(data: Self.colors, model: Self.discoveryModel) { color in
+				RoundedRectangle(cornerRadius: 20)
+					.fill((color as? Color) ?? .brown)
+					.frame(size: .init(width: 250, height: 350))
 			}
-			.frame(size: .init(width: .totalWidth, height: .totalHeight))
-			.edgesIgnoringSafeArea(.all)
-		}
+		})
 	}
 }
