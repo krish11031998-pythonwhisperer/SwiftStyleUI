@@ -14,15 +14,17 @@ struct AnimationCollectionMaster: View {
 	@State var showDiscoveryView: Bool = false
 	@State var showStackedScroll: Bool = false
 	@State var loadData: Bool = false
-	@State var data: [Any] = [] {
-		didSet {
-			if !data.isEmpty {
-				withAnimation(.default) {
-					showDiscoveryView.toggle()
-				}
-			}
-		}
-	}
+//	@State var data: [Any] = [] {
+//		didSet {
+//			if !data.isEmpty {
+//				withAnimation(.default) {
+//					showDiscoveryView.toggle()
+//				}
+//			}
+//		}
+//	}
+	
+	@StateObject var randomImageDownload: RandomImagesDownloaders = .init(endPoint: .list(page: Int.random(in: 0...5), limit: 25))
 	
 	func headerBuilder(title: String, subTitle: String? = nil) -> AnyView {
 		HStack(alignment: .center, spacing: 10) {
@@ -36,31 +38,19 @@ struct AnimationCollectionMaster: View {
 		}.padding()
 		.anyView
 	}
-	
-	static var colors: [Color] {
-		let blue = Array(repeating: Color.blue, count: 5)
-		let red = Array(repeating: Color.red, count: 5)
-		let green = Array(repeating: Color.green, count: 5)
-		let indigo = Array(repeating: Color.indigo, count: 5)
 		
-		return (blue + red + green + indigo).shuffled()
-	}
-	
-	static var discoveryModel: DiscoveryViewModel {
-		.init(cardSize: .init(width: 250, height: 350), rows: 5, spacing:25, bgColor: .black)
-	}
-	
 	private func loadImages(_ val: Bool) {
-		RandomImagesEndpoint.list(page: Int.random(in: 0...5), limit: 25).execute { (result: Result<[RandomImage],Error>) in
-			switch result {
-			case .success(let images):
-				asyncMainAnimation {
-					self.data = images
-				}
-			case .failure(let err):
-				print("(DEBUG) Err : ",err.localizedDescription)
-			}
-		}
+//		RandomImagesEndpoint.list(page: Int.random(in: 0...5), limit: 25).execute { (result: Result<[RandomImage],Error>) in
+//			switch result {
+//			case .success(let images):
+//				asyncMainAnimation {
+//					self.data = images
+//				}
+//			case .failure(let err):
+//				print("(DEBUG) Err : ",err.localizedDescription)
+//			}
+//		}
+		randomImageDownload.loadImage()
 	}
 	
 	var body: some View {
@@ -135,14 +125,25 @@ struct AnimationCollectionMaster: View {
 		.fullScreenModal(isActive: $showDiscoveryView, innerContent: discoveryView)
 		.fullScreenModal(isActive: $showStackedScroll, config: .init(isDraggable: true, showCloseIndicator: true), innerContent: stackScrollView)
 		.onChange(of: loadData, perform: loadImages(_:))
+		.onReceive(randomImageDownload.$images) {
+			if !$0.isEmpty {
+				withAnimation(.default) {
+					self.showDiscoveryView = true
+				}
+			}
+		}
 	}
 }
 
 
 extension AnimationCollectionMaster {
 	
+	var discoveryModel: DiscoveryViewModel {
+		.init(cardSize: .init(width: 250, height: 350), rows: 5, spacing:25, bgColor: .black)
+	}
+	
 	@ViewBuilder func discoveryView() -> some View {
-		DiscoveryView(data: data, model: Self.discoveryModel) { data in
+		DiscoveryView(data: randomImageDownload.images, model: discoveryModel) { data in
 			if let imgData = data as? RandomImage {
 				ImageView(url: imgData.optimizedImage(size: .init(width: 250, height: 350)))
 					.framed(size: .init(width: 250, height: 350), cornerRadius: 20, alignment: .center)

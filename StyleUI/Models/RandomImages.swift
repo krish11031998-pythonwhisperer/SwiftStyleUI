@@ -19,6 +19,8 @@ struct RandomImage: Codable {
 	let download_url: String
 }
 
+typealias RandomImages = Array<RandomImage>
+
 extension RandomImage {
 	
 	func optimizedImage(size: CGSize) -> String {
@@ -91,8 +93,25 @@ extension RandomImagesEndpoint: EndPoint {
 
 //MARK: - RandomImageDownload
 
-class RandomImages: ObservableObject {
+class RandomImagesDownloaders: ObservableObject {
 	
+	@Published var images: RandomImages = []
+	let endPoint: RandomImagesEndpoint
 	
+	init(endPoint: RandomImagesEndpoint) {
+		self.endPoint = endPoint
+	}
 	
+	func loadImage() {
+		endPoint.execute { (result:Result<RandomImages,Error>) in
+			switch result {
+			case .success(let images):
+				asyncMainAnimation(animation: .default) {
+					self.images = images
+				}
+			case .failure(let err):
+				print("(DEBUG) err: ",err.localizedDescription)
+			}
+		}
+	}
 }
