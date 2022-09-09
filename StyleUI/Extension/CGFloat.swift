@@ -52,6 +52,10 @@ public extension ClosedRange where Bound == CGFloat {
 		
 		return (val - min)/(max - min)
 	}
+	
+	func isInRange(_ val: Self.Bound) -> Bool {
+		return val >= lowerBound && val <= upperBound
+	}
 }
 
 //MARK: - Array

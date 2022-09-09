@@ -45,11 +45,14 @@ struct DiscoveryCardZoomModifier: ViewModifier {
 			
 		let midX = g.frame(in: .global).midX
 		let midY = g.frame(in: .global).midY
-		let scaleX = 1 - 0.25 * ((0...CGFloat.totalWidth.half).normalize(abs(abs(midX) - .totalWidth.half)).boundedTo(lower: 0, higher: 1))
-		let scaleY = 1 - 0.25 * ((0...CGFloat.totalHeight.half).normalize(abs(abs(midY) - .totalHeight.half)).boundedTo(lower: 0, higher: 1))
-		
+		let diffX = ((0...CGFloat.totalWidth.half).normalize(abs(abs(midX) - .totalWidth.half)).boundedTo(lower: 0, higher: 1))
+		let diffY = ((0...CGFloat.totalHeight.half).normalize(abs(abs(midY) - .totalHeight.half)).boundedTo(lower: 0, higher: 1))
+		let scaleX = 1 - 0.25 * diffX
+		let scaleY = 1 - 0.25 * diffY
+		let opacity = (0...CGFloat.totalWidth).isInRange(midX) && (0...CGFloat.totalHeight).isInRange(midY) ? 0.95 + [diffX,diffY].average * 0.05 : 0.5
 		content
 			.scaleEffect([scaleX, scaleY].average)
+			.opacity(opacity)
 		
 	}
 	

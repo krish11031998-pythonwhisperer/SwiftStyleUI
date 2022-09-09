@@ -132,39 +132,48 @@ struct AnimationCollectionMaster: View {
 			}
 		}
 		.navigationTitle("Animatable Collections")
-		.fullScreenModal(isActive: $showDiscoveryView, innerContent: {
-			DiscoveryView(data: data, model: Self.discoveryModel) { data in
-				if let imgData = data as? RandomImage {
-					ImageView(url: imgData.optimizedImage(size: .init(width: 250, height: 350)))
-						.framed(size: .init(width: 250, height: 350), cornerRadius: 20, alignment: .center)
-				} else {
-					RoundedRectangle(cornerRadius: 20)
-						.fill(.brown)
-						.frame(size: .init(width: 250, height: 350))
-				}
-				
-			}
-		})
-		.fullScreenModal(isActive: $showStackedScroll, config: .init(isDraggable: true, showCloseIndicator: true)) {
-			StackedScroll(data: [Color.red, Color.blue, Color.green]) { data in
-				VStack(alignment: .leading, spacing: 20) {
-					RoundedButton(model: .testModel)
-						.fixedSize(horizontal: false, vertical: true)
-						.clipped()
-					RoundedButton(model: .testModelLeading)
-						.fixedSize(horizontal: false, vertical: true)
-						.clipped()
-					RoundedButton(model: .testModelTrailing)
-						.fixedSize(horizontal: false, vertical: true)
-						.clipped()
-					RoundedButton(model: .testModelWithBlob)
-						.fixedSize(horizontal: false, vertical: true)
-				}
-				.padding(.init(top: .safeAreaInsets.top + 50, leading: 20, bottom: .safeAreaInsets.bottom, trailing: 20))
-				.frame(width: .totalWidth, height: .totalHeight, alignment: .topLeading)
-				.background((data as? Color) ?? .black)
-			}
-		}
+		.fullScreenModal(isActive: $showDiscoveryView, innerContent: discoveryView)
+		.fullScreenModal(isActive: $showStackedScroll, config: .init(isDraggable: true, showCloseIndicator: true), innerContent: stackScrollView)
 		.onChange(of: loadData, perform: loadImages(_:))
+	}
+}
+
+
+extension AnimationCollectionMaster {
+	
+	@ViewBuilder func discoveryView() -> some View {
+		DiscoveryView(data: data, model: Self.discoveryModel) { data in
+			if let imgData = data as? RandomImage {
+				ImageView(url: imgData.optimizedImage(size: .init(width: 250, height: 350)))
+					.framed(size: .init(width: 250, height: 350), cornerRadius: 20, alignment: .center)
+			} else {
+				RoundedRectangle(cornerRadius: 20)
+					.fill(.brown)
+					.frame(size: .init(width: 250, height: 350))
+			}
+			
+		}
+	}
+	
+	@ViewBuilder func stackScrollView() -> some View {
+		StackedScroll(data: [Color.red, Color.blue, Color.green]) { data in
+			VStack(alignment: .leading, spacing: 20) {
+				RoundedButton(model: .testModel)
+					.fixedSize(horizontal: false, vertical: true)
+					.clipped()
+				RoundedButton(model: .testModelLeading)
+					.fixedSize(horizontal: false, vertical: true)
+					.clipped()
+				RoundedButton(model: .testModelTrailing)
+					.fixedSize(horizontal: false, vertical: true)
+					.clipped()
+				RoundedButton(model: .testModelWithBlob)
+					.fixedSize(horizontal: false, vertical: true)
+			}
+			.padding(.init(top: .safeAreaInsets.top + 50, leading: 20, bottom: .safeAreaInsets.bottom, trailing: 20))
+			.frame(width: .totalWidth, height: .totalHeight, alignment: .topLeading)
+			.background((data as? Color) ?? .black)
+		}
+
 	}
 }
