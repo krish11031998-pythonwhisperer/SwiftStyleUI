@@ -11,6 +11,8 @@ import SwiftUI
 struct AnimationCollectionMaster: View {
 	let colors : [Color] = [Color.red, Color.blue, Color.mint,Color.red, Color.blue,Color.red, Color.blue, Color.mint,Color.red, Color.blue]
 	
+	@State var showDiscoveryView: Bool = false
+	
 	func headerBuilder(title: String, subTitle: String? = nil) -> AnyView {
 		HStack(alignment: .center, spacing: 10) {
 			title.text
@@ -22,6 +24,19 @@ struct AnimationCollectionMaster: View {
 			}
 		}.padding()
 		.anyView
+	}
+	
+	static var colors: [Color] {
+		let blue = Array(repeating: Color.blue, count: 5)
+		let red = Array(repeating: Color.red, count: 5)
+		let green = Array(repeating: Color.green, count: 5)
+		let indigo = Array(repeating: Color.indigo, count: 5)
+		
+		return (blue + red + green + indigo).shuffled()
+	}
+	
+	static var discoveryModel: DiscoveryViewModel {
+		.init(cardSize: .init(width: 250, height: 350), rows: 5, spacing:25)
 	}
 	
 	var body: some View {
@@ -74,9 +89,25 @@ struct AnimationCollectionMaster: View {
 							.scaleEffect(0.85)
 						}
 				}.containerize(header: headerBuilder(title: "Slide Card View"))
+				
+				RoundedButton(model: .init(topLeadingText: "Discovery View", bottomLeadingText: "Experience it!", blob: .init(background: .gray.opacity(0.14), padding: 10, cornerRadius: 20))) {
+					showDiscoveryView.toggle()
+				}.padding()
 			
 			}
 		}
 		.navigationTitle("Animatable Collections")
+		.fullScreenCover(isPresented: $showDiscoveryView) {
+			ZStack(alignment: .center) {
+				Color.black
+				DiscoveryView(data: Self.colors, model: Self.discoveryModel) { color in
+					RoundedRectangle(cornerRadius: 20)
+						.fill((color as? Color) ?? .brown)
+						.frame(size: .init(width: 250, height: 350))
+				}
+			}
+			.frame(size: .init(width: .totalWidth, height: .totalHeight))
+			.edgesIgnoringSafeArea(.all)
+		}
 	}
 }

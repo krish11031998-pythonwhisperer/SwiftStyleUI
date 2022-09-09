@@ -124,9 +124,11 @@ extension RoundedButtonModel {
 public struct RoundedButton: View {
 
 	let model: RoundedButtonModel
+	let action: Callback?
 	
-	init(model: RoundedButtonModel) {
+	init(model: RoundedButtonModel, action: Callback? = nil) {
 		self.model = model
+		self.action = action
 	}
 	
 	private var leadingStack: some View {
@@ -178,13 +180,13 @@ public struct RoundedButton: View {
 			mainButton
 				.blobify(background: blob.backgroundColor, padding: blob.padding, cornerRadius: blob.cornerRadius)
 				.buttonify {
-					model.handler?()
+					action?()
 				}
 		} else {
 			mainButton
 				.contentShape(Rectangle())
 				.buttonify {
-					model.handler?()
+					action?()
 				}
 		}
 	}

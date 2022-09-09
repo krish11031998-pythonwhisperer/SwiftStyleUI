@@ -38,6 +38,7 @@
 		EFC9B78028C9B9A2000A6452 /* CustomNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */; };
 		EFC9B78528C9E8E5000A6452 /* BottomModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78428C9E8E5000A6452 /* BottomModal.swift */; };
 		EFC9B78728CA1E6A000A6452 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78628CA1E6A000A6452 /* Int.swift */; };
+		EFC9B78928CA68C8000A6452 /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		EFC9B77F28C9B9A2000A6452 /* CustomNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavView.swift; sourceTree = "<group>"; };
 		EFC9B78428C9E8E5000A6452 /* BottomModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomModal.swift; sourceTree = "<group>"; };
 		EFC9B78628CA1E6A000A6452 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				EF8D056B28C7043D000076E5 /* CascadingCardStack.swift */,
 				EF8D056D28C73AF1000076E5 /* SlideZoomScroll.swift */,
 				EF8D057128C77641000076E5 /* SlideCardView.swift */,
+				EFC9B78828CA68C8000A6452 /* DiscoveryView.swift */,
 			);
 			path = AnimatedViews;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				EF8D056E28C73AF1000076E5 /* SlideZoomScroll.swift in Sources */,
 				EFC9B77528C8DB77000A6452 /* ImagesComponents.swift in Sources */,
 				EF8D056128C670CF000076E5 /* SlideOverCarousel.swift in Sources */,
+				EFC9B78928CA68C8000A6452 /* DiscoveryView.swift in Sources */,
 				EF8D053628C670AA000076E5 /* StyleUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
